@@ -9,6 +9,8 @@
 
 ## 004 技术架构2
 
+## 005 技术架构3
+
 3. CRM的技术架构:
     - 视图层(View): 展示数据，跟用户交互。
         - HTML, CSS, JavaScript, jQuery, Bootstrap (Ext|easyUI), JSP
@@ -20,4 +22,8 @@
 
         1. 添加学生
         2. 记录操作日志
-    - 持久层(Dao/Mapper):
+    - 持久层(Dao/Mapper): 操作数据库。
+        - (JDBC,) MyBatis,(Hibernate, iBatis)
+    - 整合层: 维护类资源，维护数据库资源
+        - Spring(IOC, AOP), (EJB, Corba)
+       
