@@ -58,6 +58,12 @@
        产品经理，需求调研  
        项目原型: 容易确定需求，开发项目时作为JSP网页
     4) 分析与设计:
+        - 架构设计:
+            - 物理架构设计:
+                - 应用服务器: tomcat(apache)，WebLogic(BEA-->Oracle)，WebSphere(IBM)，JBOSS(RedHat)，Resin(Microsoft)
+                - Web JavaEE: 13种协议
+                    - Servlet, JSP, XML, JDBC, MQ...
+                - 数据库服务器: MySQL, Oracle, DB2, SQLServer, 达梦
 
 
 
