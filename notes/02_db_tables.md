@@ -126,8 +126,281 @@
         都按照字符串来处理:
         char(10) yyyy-MM-dd
         char(19) yyyy-MM-dd HH:mm:ss
-    
-    
 
+## 2. CRM的建表脚本
+
+```mysql
+SHOW DATABASES;
+CREATE DATABASE crm2025;
+USE crm2025;
+SHOW TABLES;
+
+-- 用户
+DROP TABLE IF EXISTS tbl_user;
+CREATE TABLE tbl_user
+(
+    id          CHAR(32) NOT NULL COMMENT 'UUID',
+    login_act   VARCHAR(255) DEFAULT NULL,
+    name        VARCHAR(255) DEFAULT NULL,
+    login_pwd   VARCHAR(255) DEFAULT NULL COMMENT '密码不能采用明文存储，采用密文，MD5加密',
+    email       VARCHAR(255) DEFAULT NULL,
+    expire_time CHAR(19)     DEFAULT NULL COMMENT '失效时间为空的时候表示永不失效',
+    lock_state  CHAR(1)      DEFAULT NULL COMMENT '锁定状态为空时表示启用，为0时表示锁定',
+    deptno      CHAR(4)      DEFAULT NULL,
+    allow_ips   VARCHAR(255) DEFAULT NULL,
+    create_time CHAR(19)     DEFAULT NULL,
+    create_by   VARCHAR(255) DEFAULT NULL,
+    edit_time   CHAR(19)     DEFAULT NULL,
+    edit_by     VARCHAR(255) DEFAULT NULL,
+    PRIMARY KEY (id)
+);
+
+
+INSERT INTO tbl_user VALUE ('aaaaaaaaaabbbbbbbbbbccccccccccdd', 'ls', '李四', 'yf123', 'ls@163.com',
+                            '2018-11-27 21:50:05', '1', 'A001', '192.168.1.1',
+                            '2018-11-22 12:11:40', '李四', '', '');
+INSERT INTO tbl_user VALUE ('ddddddddddeeeeeeeeeeffffffffffgg', 'zs', '张三', 'yf123', 'zs@qq.com',
+                            '2018-11-30 23:50:05', '1', 'A001', '192.168.1.1',
+                            '2018-11-22 11:37:34', '张三', '', '');
+
+-- 数据字典
+DROP TABLE IF EXISTS tbl_dic_type;
+DROP TABLE IF EXISTS tbl_dic_value;
+
+CREATE TABLE tbl_dic_type
+(
+    code        VARCHAR(255) NOT NULL,
+    name        VARCHAR(255),
+    description VARCHAR(255),
+    PRIMARY KEY (code)
+);
+
+CREATE TABLE tbl_dic_value
+(
+    id        CHAR(32) NOT NULL,
+    value     VARCHAR(255),
+    text      VARCHAR(255),
+    order_no  VARCHAR(255),
+    type_code VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+-- 业务相关
+DROP TABLE IF EXISTS tbl_activity;
+DROP TABLE IF EXISTS tbl_activity_remark;
+DROP TABLE IF EXISTS tbl_clue;
+DROP TABLE IF EXISTS tbl_clue_remark;
+DROP TABLE IF EXISTS tbl_clue_activity_relation;
+DROP TABLE IF EXISTS tbl_contacts;
+DROP TABLE IF EXISTS tbl_contacts_remark;
+DROP TABLE IF EXISTS tbl_contacts_activity_relation;
+DROP TABLE IF EXISTS tbl_customer;
+DROP TABLE IF EXISTS tbl_customer_remark;
+DROP TABLE IF EXISTS tbl_tran;
+DROP TABLE IF EXISTS tbl_tran_history;
+DROP TABLE IF EXISTS tbl_tran_remark;
+
+-- 市场活动
+CREATE TABLE tbl_activity
+(
+    id          CHAR(32) NOT NULL,
+    owner       CHAR(32),
+    name        VARCHAR(255),
+    start_date  CHAR(10),
+    end_date    CHAR(10),
+    cost        VARCHAR(255),
+    description VARCHAR(255),
+    create_time CHAR(19),
+    create_by   VARCHAR(255),
+    edit_time   CHAR(19),
+    edit_by     VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE tbl_activity_remark
+(
+    id           CHAR(32) NOT NULL,
+    note_content VARCHAR(255),
+    create_time  CHAR(19),
+    create_by    VARCHAR(255),
+    edit_time    CHAR(19),
+    edit_by      VARCHAR(255),
+    edit_flag    CHAR(1) COMMENT '0表示未修改，1表示已修改',
+    activity_id  CHAR(32),
+    PRIMARY KEY (id)
+);
+
+-- 线索
+CREATE TABLE tbl_clue
+(
+    id                CHAR(32) NOT NULL,
+    fullname          VARCHAR(255),
+    appellation       VARCHAR(255),
+    owner             CHAR(32),
+    company           VARCHAR(255),
+    job               VARCHAR(255),
+    email             VARCHAR(255),
+    phone             VARCHAR(255),
+    website           VARCHAR(255),
+    mphone            VARCHAR(255),
+    state             VARCHAR(255),
+    source            VARCHAR(255),
+    create_time       CHAR(19),
+    create_by         VARCHAR(255),
+    edit_time         CHAR(19),
+    edit_by           VARCHAR(255),
+    description       VARCHAR(255),
+    contact_summary   VARCHAR(255),
+    next_contact_time CHAR(10),
+    address           VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE tbl_clue_remark
+(
+    id           CHAR(32) NOT NULL,
+    note_content VARCHAR(255),
+    create_time  CHAR(19),
+    create_by    VARCHAR(255),
+    edit_time    CHAR(19),
+    edit_by      VARCHAR(255),
+    edit_flag    CHAR(1) COMMENT '0表示未修改，1表示已修改',
+    clue_id      CHAR(32),
+    PRIMARY KEY (id)
+);
+
+-- 市场活动/线索 关联表
+CREATE TABLE tbl_clue_activity_relation
+(
+    id          CHAR(32) NOT NULL,
+    clue_id     CHAR(32),
+    activity_id CHAR(32),
+    PRIMARY KEY (id)
+);
+
+-- 联系人
+CREATE TABLE tbl_contacts
+(
+    id                CHAR(32) NOT NULL,
+    owner             CHAR(32),
+    source            VARCHAR(255),
+    customer_id       CHAR(32),
+    fullname          VARCHAR(255),
+    appellation       VARCHAR(255),
+    email             VARCHAR(255),
+    mphone            VARCHAR(255),
+    job               VARCHAR(255),
+    create_time       CHAR(19),
+    create_by         VARCHAR(255),
+    edit_time         CHAR(19),
+    edit_by           VARCHAR(255),
+    description       VARCHAR(255),
+    contact_summary   VARCHAR(255),
+    next_contact_time CHAR(10),
+    address           VARCHAR(255),
+    state             VARCHAR(255),
+    PRIMARY KEY (id)
+);
+CREATE TABLE tbl_contacts_remark
+(
+    id           CHAR(32) NOT NULL,
+    note_content VARCHAR(255),
+    create_time  CHAR(19),
+    create_by    VARCHAR(255),
+    edit_time    CHAR(19),
+    edit_by      VARCHAR(255),
+    edit_flag    CHAR(1) COMMENT '0表示未修改，1表示已修改',
+    contacts_id  CHAR(32),
+    PRIMARY KEY (id)
+);
+
+-- 联系人/市场活动 关联表
+CREATE TABLE tbl_contacts_activity_relation
+(
+    id          CHAR(32) NOT NULL,
+    contacts_id CHAR(32),
+    activity_id CHAR(32),
+    PRIMARY KEY (id)
+);
+
+-- 客户
+CREATE TABLE tbl_customer
+(
+    id                CHAR(32) NOT NULL,
+    owner             CHAR(32),
+    website           VARCHAR(255),
+    phone             VARCHAR(255),
+    create_time       CHAR(19),
+    create_by         VARCHAR(255),
+    edit_time         CHAR(19),
+    edit_by           VARCHAR(255),
+    contact_summary   VARCHAR(255),
+    next_contact_time CHAR(10),
+    description       VARCHAR(255),
+    address           VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE tbl_customer_remark
+(
+    id           CHAR(32) NOT NULL,
+    note_content VARCHAR(255),
+    create_time  CHAR(19),
+    create_by    VARCHAR(255),
+    edit_time    CHAR(19),
+    edit_by      VARCHAR(255),
+    edit_flag    CHAR(1) COMMENT '0表示未修改，1表示已修改',
+    customer_id  CHAR(32),
+    PRIMARY KEY (id)
+);
+
+-- 交易
+CREATE TABLE tbl_tran
+(
+    id                CHAR(32) NOT NULL,
+    owner             CHAR(32),
+    money             VARCHAR(255),
+    name              VARCHAR(255),
+    expected_date     CHAR(10),
+    customer_id       CHAR(32),
+    stage             VARCHAR(255),
+    type              VARCHAR(255),
+    source            VARCHAR(255),
+    activity_id       CHAR(32),
+    contacts_id       CHAR(32),
+    create_time       CHAR(19),
+    create_by         VARCHAR(255),
+    edit_time         CHAR(19),
+    edit_by           VARCHAR(255),
+    description       VARCHAR(255),
+    contact_summary   VARCHAR(255),
+    next_contact_time CHAR(10),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE tbl_tran_history
+(
+    id          CHAR(32) NOT NULL,
+    stage       VARCHAR(255),
+    money       VARCHAR(255),
+    create_time CHAR(19),
+    create_by   VARCHAR(255),
+    tran_id     CHAR(32),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE tbl_tran_remark
+(
+    id           CHAR(32) NOT NULL,
+    note_content VARCHAR(255),
+    create_time  CHAR(19),
+    create_by    VARCHAR(255),
+    edit_time    CHAR(19),
+    edit_by      VARCHAR(255),
+    edit_flag    CHAR(1) COMMENT '0表示未修改，1表示已修改',
+    tran_id      CHAR(32),
+    PRIMARY KEY (id)
+);
+```
 
 
