@@ -21,11 +21,11 @@
        http://www.springframework.org/schema/util
        http://www.springframework.org/schema/util/spring-util.xsd">
     <!-- dispatcherServlet截获所有URL请求 -->
-    <mvc:default-servlet-handler />
+    <mvc:default-servlet-handler/>
     <!-- spring mvc 扫描包下的controller -->
-    <context:component-scan base-package="com.yang.crm.web.controller"/>
-    <context:component-scan base-package="com.yang.crm.settings.web.controller"/>
-    <context:component-scan base-package="com.yang.crm.workbench.web.controller"/>
+    <context:component-scan base-package="com.enode.crm.web.controller"/>
+    <context:component-scan base-package="com.enode.crm.settings.web.controller"/>
+    <context:component-scan base-package="com.enode.crm.workbench.web.controller"/>
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven/>
     <!-- 配置视图解析器 -->
@@ -44,7 +44,7 @@
             <mvc:exclude-mapping path="/settings/qx/user/login.do"/>
             <mvc:exclude-mapping path="/settings/qx/user/toRegister.do"/>
             <mvc:exclude-mapping path="/settings/qx/user/register.do"/>
-            <bean class="com.yang.crm.settings.web.interceptor.LoginInterceptor"/>
+            <bean class="com.enode.crm.settings.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
     <!-- 配置文件上传解析器 id:必须是multipartResolver-->
