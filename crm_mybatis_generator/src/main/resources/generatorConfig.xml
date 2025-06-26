@@ -42,7 +42,7 @@
             targetProject     指定在该项目下所在的路径|指定生成到的工程名称
         -->
         <javaModelGenerator targetPackage="com.enode.crm.settings.domain"
-                            targetProject="/Users/liangjinyong/Desktop/Playground/ssm_playground/energy_node_ssm_crm/crm_mybatis_generator/src/main/java">
+                            targetProject="/Users/liangjinyong/Desktop/Playground/ssm_playground/energy_node_ssm_crm/crm_project/src/main/java">
 
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
@@ -56,7 +56,7 @@
 
         <!--Mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 -->
         <sqlMapGenerator targetPackage="com.enode.crm.settings.mapper"
-                         targetProject="/Users/liangjinyong/Desktop/Playground/ssm_playground/energy_node_ssm_crm/crm_mybatis_generator/src/main/java">
+                         targetProject="/Users/liangjinyong/Desktop/Playground/ssm_playground/energy_node_ssm_crm/crm_project/src/main/java">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
@@ -66,7 +66,7 @@
                 type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口
         -->
         <javaClientGenerator targetPackage="com.enode.crm.settings.mapper"
-                             targetProject="/Users/liangjinyong/Desktop/Playground/ssm_playground/energy_node_ssm_crm/crm_mybatis_generator/src/main/java"
+                             targetProject="/Users/liangjinyong/Desktop/Playground/ssm_playground/energy_node_ssm_crm/crm_project/src/main/java"
                              type="XMLMAPPER">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
