@@ -29,22 +29,24 @@
         <form action="workbench/index.html" class="form-horizontal" role="form">
             <div class="form-group form-group-lg">
                 <div style="width: 350px;">
-                    <input id="loginAct" class="form-control" type="text" value="${cookie.loginAct.value}"
-                           placeholder="用户名">
+                    <input id="loginAct" class="form-control" type="text" placeholder="用户名">
                 </div>
                 <div style="width: 350px; position: relative;top: 20px;">
-                    <input id="loginPwd" class="form-control" type="password" value="${cookie.loginPwd.value}"
+                    <input id="loginPwd" class="form-control" type="password"
                            placeholder="密码">
                 </div>
                 <div class="checkbox" style="position: relative;top: 30px; left: 10px;">
                     <label>
                         <%--存在账号密码cookie就默认选择复选框，如果不存在那么默认不选中--%>
+                        <%--
                         <c:if test="${not empty cookie.loginAct and not empty cookie.loginPwd}">
                             <input id="isRemPwd" type="checkbox" checked>
                         </c:if>
                         <c:if test="${empty cookie.loginAct and empty cookie.loginPwd}">
                             <input id="isRemPwd" type="checkbox">
                         </c:if>
+                        --%>
+                        <input id="isRemPwd" type="checkbox">
                         记住密码
                     </label>
                     &nbsp;&nbsp;
@@ -54,9 +56,11 @@
                         style="width: 350px; position: relative;top: 45px;">登录
                 </button>
                 <br/>
+                <!--
                 <button type="button" class="btn btn-primary btn-lg btn-block" id="registerBtn"
                         style="width: 350px; position: relative;top: 45px;">注册
                 </button>
+                -->
             </div>
         </form>
     </div>
