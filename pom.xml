@@ -11,6 +11,7 @@
   <url>http://maven.apache.org</url>
     <modules>
         <module>crm_project</module>
+        <module>crm_mybatis_generator</module>
     </modules>
 
   <properties>
