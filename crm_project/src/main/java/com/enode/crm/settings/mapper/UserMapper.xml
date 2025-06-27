@@ -227,7 +227,7 @@
     </update>
 
     <!-- User selectUserByLoginActAndPwd(Map<String, Object> map); -->
-    <select id="selectUserByLoginActAndPwd" parameterMap="map" resultMap="BaseResultMap">
+    <select id="selectUserByLoginActAndPwd" parameterType="map" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from tbl_user

@@ -11,6 +11,46 @@
     <link href="jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="jquery/jquery-1.11.1-min.js"></script>
     <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // 给"登录"按钮添加单击事件
+            $('#loginBtn').click(function () {
+                // 收集参数
+                let loginAct = $.trim($('#loginAct').val());
+                let loginPwd = $.trim($('#loginPwd').val());
+                let isRemPwd = $('#isRemPwd').prop('checked');
+                // 表单验证
+                if (loginAct == '') {
+                    alert('用户名不能为空');
+                    return;
+                }
+                if (loginPwd == '') {
+                    alert('密码不能为空');
+                    return;
+                }
+                // 发送请求
+                $.ajax({
+                    url: 'settings/qx/user/login.do',
+                    data: {
+                        loginAct: loginAct,
+                        loginPwd: loginPwd,
+                        isRemPwd: isRemPwd,
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code == '1') {
+                            // 登录成功，跳转到业务的主页面
+                            window.location.href = 'workbench/index.do';
+                        } else {
+                            // 登录失败，显示提示信息
+                            $("#msg").text(data.message);
+                        }
+                    }
+                })
+            });
+        });
+    </script>
 </head>
 <body>
 <div style="position: absolute; top: 0px; left: 0px; width: 60%;">

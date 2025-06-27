@@ -1,16 +1,16 @@
 package com.enode.crm.settings.web.controller;
 
+import com.enode.crm.commons.constants.Constants;
 import com.enode.crm.commons.domain.ReturnObject;
+import com.enode.crm.commons.utils.DateUtils;
 import com.enode.crm.settings.domain.User;
 import com.enode.crm.settings.service.UserService;
-import jdk.jfr.SettingControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class UserController {
         return "settings/qx/user/login";
     }
 
-    @RequestMapping("/settings/qx/user/login")
+    @RequestMapping("/settings/qx/user/login.do")
     @ResponseBody
     public Object login(String loginAct, String loginPwd, String isRemPwd, HttpServletRequest request) {
         // 封装参数
@@ -54,26 +54,25 @@ public class UserController {
         ReturnObject returnObject = new ReturnObject();
         if (user == null) {
             // 登录失败: 用户名或密码错误
-            returnObject.setCode("0");
+            returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
             returnObject.setMessage("用户名或者密码错误");
         } else {
             // 进一步判断账号是否合法
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String nowStr = sdf.format(new Date());
+            String nowStr = DateUtils.formateDateTime(new Date());
             if (nowStr.compareTo(user.getExpireTime()) > 0) {
                 // 登录失败，账号已过期
-                returnObject.setCode("0");
+                returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
                 returnObject.setMessage("账号已过期");
             } else if ("0".equals(user.getLockState())) {
                 // 登录失败，状态被锁定
-                returnObject.setCode("0");
+                returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
                 returnObject.setMessage("状态被锁定");
             } else if (!user.getAllowIps().contains(request.getRemoteAddr())) {
                 // 登录失败，IP受限
-                returnObject.setCode("0");
+                returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
                 returnObject.setMessage("IP受限");
             } else {
-                returnObject.setCode("1");
+                returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
             }
         }
         return returnObject;
