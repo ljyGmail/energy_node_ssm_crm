@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +44,7 @@ public class UserController {
 
     @RequestMapping("/settings/qx/user/login.do")
     @ResponseBody
-    public Object login(String loginAct, String loginPwd, String isRemPwd, HttpServletRequest request) {
+    public Object login(String loginAct, String loginPwd, String isRemPwd, HttpServletRequest request, HttpSession session) {
         // 封装参数
         Map<String, Object> map = new HashMap<>();
         map.put("loginAct", loginAct);
@@ -72,7 +73,10 @@ public class UserController {
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
                 returnObject.setMessage("IP受限");
             } else {
+                // 登录成功
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
+                // 把user保存到session中
+                session.setAttribute(Constants.SESSION_USER, user);
             }
         }
         return returnObject;

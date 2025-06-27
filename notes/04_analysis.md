@@ -62,4 +62,16 @@
 
 3. 使用jQuery获取指定元素的指定属性的值:  
    选择器.attr('属性名'); // 用来获取那些值不是true/false的属性的值  
-   选择器.prop('属性名'); // 用来获取值是true/false的属性的值，例如: checked, selected, readonly, disabled等  
+   选择器.prop('属性名'); // 用来获取值是true/false的属性的值，例如: checked, selected, readonly, disabled等
+
+## 32 登录功能之后业务主页面与名称
+
+- 把控制层(Controller)代码中处理好的数据传递到视图层(jsp)，使用作用域传递:
+    - pageContext: 用来在同一个页面的不同标签之间传递数据。
+    - request: 在同一个请求过程中间传递数据。
+    - session: 同一个浏览器窗口的不同请求之间传递数据。
+    - application: 所有用户都共享的数据，并且长久频繁使用的数据。
+
+
+
+
