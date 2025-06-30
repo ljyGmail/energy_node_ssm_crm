@@ -13,6 +13,14 @@
     <script type="text/javascript" src="jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         $(function () {
+            // 给整个浏览器窗口添加键盘按下事件
+            $(window).keydown(function (e) {
+                // 如果按的是回车键，则提交登录请求
+                if (e.keyCode === 13) {
+                    $('#loginBtn').click();
+                }
+            });
+
             // 给"登录"按钮添加单击事件
             $('#loginBtn').click(function () {
                 // 收集参数
