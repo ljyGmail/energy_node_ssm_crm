@@ -83,6 +83,7 @@
 ## 34 实现记住密码
 
 - 记住密码:
+
 ```plain text
 访问: login.jsp --> 后台: .html: 如果上次记住密码，自动填上账号和密码; 否则，删除cookie。  
                 如何判断上次是否记住密码?
@@ -106,4 +107,10 @@
 2. 使用EL表达式获取cookie:
 ${cookie.loginAct.value}
 ```
+
+## 36 安全退出功能分析需求与设计
+
+![img.png](images/036_logout_process.png)
+
+## 37 安全退出功能的实现
 
