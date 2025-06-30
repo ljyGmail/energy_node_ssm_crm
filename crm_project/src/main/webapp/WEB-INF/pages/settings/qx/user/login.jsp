@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     // 设置动态初始访问路径（这里本地是http://127.0.0.1:8080/crm/）
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
@@ -89,25 +90,23 @@
         <form action="workbench/index.html" class="form-horizontal" role="form">
             <div class="form-group form-group-lg">
                 <div style="width: 350px;">
-                    <input id="loginAct" class="form-control" type="text" placeholder="用户名">
+                    <input id="loginAct" class="form-control" type="text" value="${cookie.loginAct.value}"
+                           placeholder="用户名">
                 </div>
                 <div style="width: 350px; position: relative;top: 20px;">
-                    <input id="loginPwd" class="form-control" type="password"
+                    <input id="loginPwd" class="form-control" type="password" value="${cookie.loginPwd.value}"
                            placeholder="密码">
                 </div>
                 <div class="checkbox" style="position: relative;top: 30px; left: 10px;">
                     <label>
                         <%--存在账号密码cookie就默认选择复选框，如果不存在那么默认不选中--%>
-                        <%--
                         <c:if test="${not empty cookie.loginAct and not empty cookie.loginPwd}">
                             <input id="isRemPwd" type="checkbox" checked>
                         </c:if>
-                        <c:if test="${empty cookie.loginAct and empty cookie.loginPwd}">
+                        <c:if test="${empty cookie.loginAct or empty cookie.loginPwd}">
                             <input id="isRemPwd" type="checkbox">
                         </c:if>
-                        --%>
-                        <input id="isRemPwd" type="checkbox">
-                        记住密码
+                        十天内免登录
                     </label>
                     &nbsp;&nbsp;
                     <span id="msg" style="color: red"></span>

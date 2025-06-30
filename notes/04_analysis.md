@@ -78,7 +78,32 @@
     - 选择器.click(function() { // 给指定的元素添加事件  
       // js 代码  
       });
-    - 选择器.click(); // 在指定的元素上模拟发生一次事件  
+    - 选择器.click(); // 在指定的元素上模拟发生一次事件
 
+## 34 实现记住密码
 
+- 记住密码:
+```plain text
+访问: login.jsp --> 后台: .html: 如果上次记住密码，自动填上账号和密码; 否则，删除cookie。  
+                如何判断上次是否记住密码?
+                -- 上次登录成功，判断是否需要记住密码: 如果需要记住密码，则往浏览器写cookie; 否则，不写。
+                            而且cookie的值必须是该用户的loginAct和loginPwd。
+                -- 下次登录时，判断该用户有没有cookie: 如果有，则自动填写账号和密码，否则，不写。
+                            而且填写的是cookie的值。
+    --> 浏览器显示
+    
+获取cookie:
+1. 使用Java代码获取cookie:
+    Cookie[] cs = request.getCookies();
+    for(Cookie c : cs) {
+        if (c.getName().equals("loginAct")) {
+            String loginAct = c.getValue();
+        } else if (c.getName().equals("loginPwd")) {
+            String loingPwd = c.getValue();
+        }
+    }
+    
+2. 使用EL表达式获取cookie:
+${cookie.loginAct.value}
+```
 
