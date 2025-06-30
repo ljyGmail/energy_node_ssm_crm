@@ -114,3 +114,28 @@ ${cookie.loginAct.value}
 
 ## 37 安全退出功能的实现
 
+## 38 登录验证功能的需求分析
+
+- 用户访问任何业务资源，都需要进行登录验证。
+- 只有登录成功的用户才能访问业务资源。
+- 没有登录成功的用户访问业务资源，跳转到登录页面。
+
+## 39 登录验证功能实现技术的分析
+
+- 登录验证:
+```text
+1) 过滤器:
+    a) implements Filter {
+            -- init
+            -- doFilter
+            -- destroy
+        }
+    b) 配置过滤器: web.xml
+2) 拦截器:
+    a) 提供拦截器类: implements HandlerInterceptor {
+                        -- pre
+                        -- post
+                        -- after
+                    }
+    b) 配置拦截器: springmvc.xml
+```
