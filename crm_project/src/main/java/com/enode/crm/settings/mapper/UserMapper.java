@@ -2,6 +2,7 @@ package com.enode.crm.settings.mapper;
 
 import com.enode.crm.settings.domain.User;
 
+import java.util.List;
 import java.util.Map;
 
 public interface UserMapper {
@@ -60,4 +61,11 @@ public interface UserMapper {
      * @return
      */
     User selectUserByLoginActAndPwd(Map<String, Object> map);
+
+    /**
+     * 查询所有的用户
+     *
+     * @return
+     */
+    List<User> selectAllUsers();
 }
