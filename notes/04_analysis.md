@@ -123,6 +123,7 @@ ${cookie.loginAct.value}
 ## 39 登录验证功能实现技术的分析
 
 - 登录验证:
+
 ```text
 1) 过滤器:
     a) implements Filter {
@@ -139,3 +140,36 @@ ${cookie.loginAct.value}
                     }
     b) 配置拦截器: springmvc.xml
 ```
+
+## 43 测试登录验证功能与分析页面分割技术
+
+```Plain Text
+页面切割技术:
+    1) <frameset>和<frame>
+       <frameset>用来切割页面。
+                <frameset cols="20%,60%,20%">
+                <frameset rows="10%,80%,10%">
+       <frame>: 显示页面。
+                <frame src="url">
+                
+                <frameset cols="20%,60%,20%">
+                    <frame src="url1" name="f1">
+                    <frame src="url2" name="f2">
+                    <frame src="url3" name="f3">
+                </frameset>
+       每一个<frame>标签就是一个独立的浏览器窗口。
+       
+       <a href="url" target="f3">test</a>
+       
+    2) <div>和<iframe>:
+       <div>: 切割页面。
+            <div style="height: 10%; width: 20%;">
+       <iframe>: 显示页面。
+            <div style="height: 10%; width: 20%;">
+                <iframe href="url">
+            </div>
+```
+
+
+
+
