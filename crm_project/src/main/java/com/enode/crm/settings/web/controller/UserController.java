@@ -116,6 +116,6 @@ public class UserController {
         session.invalidate();
 
         // 跳转到首页
-        return "redirect:/";
+        return "redirect:/"; // 借助SpringMVC来重定向，response.sendRedirect("/crm/");
     }
 }
