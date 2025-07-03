@@ -29,6 +29,8 @@
             // 给"创建"按钮添加单机事件
             $('#createActivityBtn').click(function () {
                 // 初始化工作，任意js代码
+                // 重置所有表单组件的值
+                $('#createActivityForm').get(0).reset();
 
                 // 弹出创建市场活动的模态窗口
                 $('#createActivityModal').modal('show');
@@ -129,7 +131,6 @@
                 <h4 class="modal-title" id="myModalLabel1">创建市场活动</h4>
             </div>
             <div class="modal-body">
-
                 <form id="createActivityForm" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="create-marketActivityOwner" class="col-sm-2 control-label">所有者<span
