@@ -212,4 +212,21 @@ ${cookie.loginAct.value}
 
 ## 56 创建市场活动时重置上次填写的表单数据
 
+## 57 介绍js日历插件及其使用
+
+```Plain Text
+1. js日历
+    一类问题:
+        1) 实现起来比较复杂。
+        2) 跟业务无关。
+        
+    日历插件: Bootstrap-datetimepicker
+        前端插件使用步骤:
+            1) 引入开发包: .js, .css
+                下载开发包，拷贝到项目webapp目录下
+                把开发包引入到jsp文件中，<link> <scrip>
+            2) 创建容器: <input type="text"> <div>
+            3) 当容器加载完成之后，对容器调用工具函数。
+```
+
 
