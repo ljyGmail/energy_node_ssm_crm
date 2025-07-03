@@ -27,7 +27,7 @@
     <!-- mapper注解扫描器配置,扫描@MapperScan注解,自动生成代码对象 -->
     <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--这个basePackage和mybatis-config中的mappers标签作用有什么区别-->
-        <property name="basePackage" value="com.enode.crm.settings.mapper"/>
+        <property name="basePackage" value="com.enode.crm.settings.mapper,com.enode.crm.workbench.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
