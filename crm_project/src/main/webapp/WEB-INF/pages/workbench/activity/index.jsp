@@ -116,6 +116,17 @@
                     },
                 });
             });
+
+            // 当容器加载完成后，对容器调用工具函数
+            $('.my-date').datetimepicker({
+                language: 'zh-CN', // 语言
+                format: 'yyyy-mm-dd', // 日期的格式
+                minView: 'month', // 可以选择的最小视图
+                initialDate: new Date(), // 初始化选择的日期
+                autoclose: true, // 设置选择完日期或者时间后，是否自动关闭日历
+                todayBtn: true, // 设置是否显示"今天"按钮，默认为false
+                clearBtn: true, // 设置是否显示"清空"按钮，默认为false
+            });
         });
     </script>
 </head>
@@ -152,11 +163,11 @@
                     <div class="form-group">
                         <label for="create-startDate" class="col-sm-2 control-label">开始日期</label>
                         <div class="col-sm-10" style="width: 300px;">
-                            <input type="text" class="form-control my-date" id="create-startDate">
+                            <input type="text" class="form-control my-date" id="create-startDate" readonly>
                         </div>
                         <label for="create-endDate" class="col-sm-2 control-label">结束日期</label>
                         <div class="col-sm-10" style="width: 300px;">
-                            <input type="text" class="form-control my-date" id="create-endDate">
+                            <input type="text" class="form-control my-date" id="create-endDate" readonly>
                         </div>
                     </div>
                     <div class="form-group">
