@@ -129,6 +129,16 @@
             });
 
             // 当市场活动主页面加载完成，查询所有数据的第一页以及所有数据的总条数，默认每页显示10条
+            queryActivityByConditionForPaging();
+
+            // 给"查询"按钮添加单击事件
+            $('#queryActivityBtn').click(function () {
+                // 当用户点击"查询"按钮，查询所有符合条件的数据的第一页以及所有符合条件数据的总条数
+                queryActivityByConditionForPaging();
+            });
+        });
+
+        function queryActivityByConditionForPaging() {
             // 收集参数
             const name = $('#query-name').val();
             const owner = $('#query-owner').val();
@@ -167,7 +177,7 @@
                     $('#tBody').html(htmlStr);
                 },
             });
-        });
+        }
     </script>
 </head>
 <body>
