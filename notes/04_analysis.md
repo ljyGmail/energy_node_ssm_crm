@@ -242,3 +242,16 @@ ${cookie.loginAct.value}
     - 在市场活动主页面显示市场活动列表和记录的总条数。
     - 默认每页显示条数: 10。
 
+## 62 分页查询市场活动设计
+
+![img.png](images/62_market_activity_pageing_process.png)
+
+## 63 分页查询市场活动列表实现Mapper层
+
+## 64 分页查询市场活动列表实现Service层
+
+## 65 分页查询市场活动总条数的Mapper层和Service层
+
+## 66 分页查询市场活动列表实现Controller层
+
+

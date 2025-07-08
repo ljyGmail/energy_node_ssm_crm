@@ -6,6 +6,9 @@ import com.enode.crm.workbench.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * ClassName: ActivityServiceImpl
  * Package: com.enode.crm.workbench.service.impl
@@ -24,5 +27,15 @@ public class ActivityServiceImpl implements ActivityService {
     @Override
     public int saveCreatedActivity(Activity activity) {
         return activityMapper.insertActivity(activity);
+    }
+
+    @Override
+    public List<Activity> queryActivityByConditionForPaging(Map<String, Object> map) {
+        return activityMapper.selectActivityByConditionForPaging(map);
+    }
+
+    @Override
+    public int queryCountOfActivitiesByCondition(Map<String, Object> map) {
+        return activityMapper.selectCountOfActivitiesByCondition(map);
     }
 }

@@ -2,6 +2,9 @@ package com.enode.crm.workbench.service;
 
 import com.enode.crm.workbench.domain.Activity;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * ClassName: ActivityService
  * Package: com.enode.crm.workbench.service
@@ -14,4 +17,8 @@ import com.enode.crm.workbench.domain.Activity;
 public interface ActivityService {
 
     int saveCreatedActivity(Activity activity);
+
+    List<Activity> queryActivityByConditionForPaging(Map<String, Object> map);
+
+    int queryCountOfActivitiesByCondition(Map<String, Object> map);
 }
