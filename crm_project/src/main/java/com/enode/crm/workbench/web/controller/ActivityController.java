@@ -75,9 +75,9 @@ public class ActivityController {
         return returnObject;
     }
 
-    @RequestMapping("/workbench/activity/queryActivityByConditionForPage")
+    @RequestMapping("/workbench/activity/queryActivityByConditionForPaging")
     @ResponseBody
-    public Object queryActivityByConditionForPage(String name, String owner, String startDate, String endDate, int pageNo, int pageSize) {
+    public Object queryActivityByConditionForPaging(String name, String owner, String startDate, String endDate, int pageNo, int pageSize) {
 
         // 封装参数
         Map<String, Object> map = new HashMap<>();

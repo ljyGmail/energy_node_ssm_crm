@@ -127,6 +127,46 @@
                 todayBtn: true, // 设置是否显示"今天"按钮，默认为false
                 clearBtn: true, // 设置是否显示"清空"按钮，默认为false
             });
+
+            // 当市场活动主页面加载完成，查询所有数据的第一页以及所有数据的总条数，默认每页显示10条
+            // 收集参数
+            const name = $('#query-name').val();
+            const owner = $('#query-owner').val();
+            const startDate = $('#query-startDate').val();
+            const endDate = $('#query-endDate').val();
+            const pageNo = 1;
+            const pageSize = 10;
+            // 发送请求
+            $.ajax({
+                url: 'workbench/activity/queryActivityByConditionForPaging',
+                data: {
+                    name: name,
+                    owner: owner,
+                    startDate: startDate,
+                    endDate: endDate,
+                    pageNo: pageNo,
+                    pageSize: pageSize,
+                },
+                type: 'post',
+                dataType: 'json',
+                success: function (data) {
+                    // 显示总条数
+                    $('#totalRowsB').text(data.totalRows);
+                    // 显示市场活动的列表
+                    // 遍历activityList，拼接所有行数据
+                    var htmlStr = '';
+                    $.each(data.activityList, function (index, obj) {
+                        htmlStr += '<tr class="active">';
+                        htmlStr += '<td><input type="checkbox" value="' + obj.id + '"/></td>';
+                        htmlStr += '<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'detail.html\';">' + obj.name + '</a></td>';
+                        htmlStr += '<td>' + obj.owner + '</td>';
+                        htmlStr += '<td>' + obj.startDate + '</td>';
+                        htmlStr += '<td>' + obj.endDate + '</td>';
+                        htmlStr += '</tr>';
+                    });
+                    $('#tBody').html(htmlStr);
+                },
+            });
         });
     </script>
 </head>
@@ -403,40 +443,41 @@
             <div id="page-master"></div>
         </div>
 
-        <%--			<div style="height: 50px; position: relative;top: 30px;">--%>
-        <%--				<div>--%>
-        <%--					<button type="button" class="btn btn-default" style="cursor: default;">共<b id="totalRowsB"></b>条记录</button>--%>
-        <%--				</div>--%>
-        <%--				<div class="btn-group" style="position: relative;top: -34px; left: 110px;">--%>
-        <%--					<button type="button" class="btn btn-default" style="cursor: default;">显示</button>--%>
-        <%--					<div class="btn-group">--%>
-        <%--						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">--%>
-        <%--							10--%>
-        <%--							<span class="caret"></span>--%>
-        <%--						</button>--%>
-        <%--						<ul class="dropdown-menu" role="menu">--%>
-        <%--							<li><a href="#">20</a></li>--%>
-        <%--							<li><a href="#">30</a></li>--%>
-        <%--						</ul>--%>
-        <%--					</div>--%>
-        <%--					<button type="button" class="btn btn-default" style="cursor: default;">条/页</button>--%>
-        <%--				</div>--%>
-        <%--				<div style="position: relative;top: -88px; left: 285px;">--%>
-        <%--					<nav>--%>
-        <%--						<ul class="pagination">--%>
-        <%--							<li class="disabled"><a href="#">首页</a></li>--%>
-        <%--							<li class="disabled"><a href="#">上一页</a></li>--%>
-        <%--							<li class="active"><a href="#">1</a></li>--%>
-        <%--							<li><a href="#">2</a></li>--%>
-        <%--							<li><a href="#">3</a></li>--%>
-        <%--							<li><a href="#">4</a></li>--%>
-        <%--							<li><a href="#">5</a></li>--%>
-        <%--							<li><a href="#">下一页</a></li>--%>
-        <%--							<li class="disabled"><a href="#">末页</a></li>--%>
-        <%--						</ul>--%>
-        <%--					</nav>--%>
-        <%--				</div>--%>
-        <%--			</div>--%>
+        <div style="height: 50px; position: relative;top: 30px;">
+            <div>
+                <button type="button" class="btn btn-default" style="cursor: default;">共<b id="totalRowsB"></b>条记录
+                </button>
+            </div>
+            <div class="btn-group" style="position: relative;top: -34px; left: 110px;">
+                <button type="button" class="btn btn-default" style="cursor: default;">显示</button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        10
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">20</a></li>
+                        <li><a href="#">30</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-default" style="cursor: default;">条/页</button>
+            </div>
+            <div style="position: relative;top: -88px; left: 285px;">
+                <nav>
+                    <ul class="pagination">
+                        <li class="disabled"><a href="#">首页</a></li>
+                        <li class="disabled"><a href="#">上一页</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">下一页</a></li>
+                        <li class="disabled"><a href="#">末页</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
 </div>
 </body>
