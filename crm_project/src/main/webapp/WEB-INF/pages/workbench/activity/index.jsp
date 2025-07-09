@@ -133,8 +133,10 @@
 
             // 给"查询"按钮添加单击事件
             $('#queryActivityBtn').click(function () {
+                // 获取当前'每页显示多少条'的值，bs_pagination插件中提供了获取其参数的方式
+                const rowsPerPage = $('#page-master').bs_pagination('getOption', 'rowsPerPage');
                 // 当用户点击"查询"按钮，查询所有符合条件的数据的第一页以及所有符合条件数据的总条数
-                queryActivityByConditionForPaging(1, 10);
+                queryActivityByConditionForPaging(1, rowsPerPage);
             });
         });
 
