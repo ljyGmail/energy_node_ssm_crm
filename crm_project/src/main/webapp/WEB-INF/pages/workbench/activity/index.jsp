@@ -106,7 +106,9 @@
                         if (data.code === '1') {
                             // 关闭模态窗口
                             $('#createActivityModal').modal('hide');
-                            // 刷新市场活动列表，显示第一页数据，保持每页显示条数不变 (TODO)
+                            // 刷新市场活动列表，显示第一页数据，保持每页显示条数不变
+                            const rowsPerPage = $('#page-master').bs_pagination('getOption', 'rowsPerPage');
+                            queryActivityByConditionForPaging(1, rowsPerPage);
                         } else {
                             // 提示信息
                             alert(data.message);
