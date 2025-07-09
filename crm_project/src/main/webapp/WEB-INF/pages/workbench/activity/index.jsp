@@ -161,7 +161,7 @@
                 dataType: 'json',
                 success: function (data) {
                     // 显示总条数
-                    $('#totalRowsB').text(data.totalRows);
+                    // $('#totalRowsB').text(data.totalRows);
                     // 显示市场活动的列表
                     // 遍历activityList，拼接所有行数据
                     var htmlStr = '';
@@ -175,6 +175,36 @@
                         htmlStr += '</tr>';
                     });
                     $('#tBody').html(htmlStr);
+
+                    // 计算总页数
+                    let totalPages = 1;
+                    totalPages = data.totalRows / pageSize;
+                    if (data.totalRows % pageSize === 0) {
+                        totalPages = parseInt(data.totalRows / pageSize);
+                    } else {
+                        totalPages = parseInt(data.totalRows / pageSize) + 1;
+                    }
+
+                    // 调用bs_pagination工具函数，显示分页信息
+                    $('#page-master').bs_pagination({
+                        currentPage: pageNo, // 当前页号，相当于pageNo
+
+                        rowsPerPage: pageSize, // 每页显示条数，相当于pageSize
+                        totalRows: data.totalRows, // 总条数
+                        totalPages: totalPages, // 总页数，必填参数
+
+                        visiblePageLinks: 5, // 最多可以显示的卡片数
+
+                        showGoToPage: true, // 是否显示"跳转到"组件，默认为true(显示)
+                        showRowsPerPage: true, // 是否显示"每页显示条数"组件，默认为true(显示)
+                        showRowsInfo: true, // 是否显示"记录信息"组件，默认为true(显示)
+                        // 用户每次切换页号，都会触发此函数
+                        // 每次返回切换页号之后的pageNo和pageSize
+                        onChangePage: function (event, pageObj) { // returns page_num and rows_per_page after a link has been clicked
+                            // console.log(pageObj); // Object { currentPage: 2, rowsPerPage: 20 }
+                            queryActivityByConditionForPaging(pageObj.currentPage, pageObj.rowsPerPage);
+                        },
+                    });
                 },
             });
         }
@@ -453,41 +483,41 @@
             <div id="page-master"></div>
         </div>
 
-        <div style="height: 50px; position: relative;top: 30px;">
-            <div>
-                <button type="button" class="btn btn-default" style="cursor: default;">共<b id="totalRowsB"></b>条记录
-                </button>
-            </div>
-            <div class="btn-group" style="position: relative;top: -34px; left: 110px;">
-                <button type="button" class="btn btn-default" style="cursor: default;">显示</button>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        10
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">20</a></li>
-                        <li><a href="#">30</a></li>
-                    </ul>
-                </div>
-                <button type="button" class="btn btn-default" style="cursor: default;">条/页</button>
-            </div>
-            <div style="position: relative;top: -88px; left: 285px;">
-                <nav>
-                    <ul class="pagination">
-                        <li class="disabled"><a href="#">首页</a></li>
-                        <li class="disabled"><a href="#">上一页</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">下一页</a></li>
-                        <li class="disabled"><a href="#">末页</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <%--        <div style="height: 50px; position: relative;top: 30px;">--%>
+        <%--            <div>--%>
+        <%--                <button type="button" class="btn btn-default" style="cursor: default;">共<b id="totalRowsB"></b>条记录--%>
+        <%--                </button>--%>
+        <%--            </div>--%>
+        <%--            <div class="btn-group" style="position: relative;top: -34px; left: 110px;">--%>
+        <%--                <button type="button" class="btn btn-default" style="cursor: default;">显示</button>--%>
+        <%--                <div class="btn-group">--%>
+        <%--                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">--%>
+        <%--                        10--%>
+        <%--                        <span class="caret"></span>--%>
+        <%--                    </button>--%>
+        <%--                    <ul class="dropdown-menu" role="menu">--%>
+        <%--                        <li><a href="#">20</a></li>--%>
+        <%--                        <li><a href="#">30</a></li>--%>
+        <%--                    </ul>--%>
+        <%--                </div>--%>
+        <%--                <button type="button" class="btn btn-default" style="cursor: default;">条/页</button>--%>
+        <%--            </div>--%>
+        <%--            <div style="position: relative;top: -88px; left: 285px;">--%>
+        <%--                <nav>--%>
+        <%--                    <ul class="pagination">--%>
+        <%--                        <li class="disabled"><a href="#">首页</a></li>--%>
+        <%--                        <li class="disabled"><a href="#">上一页</a></li>--%>
+        <%--                        <li class="active"><a href="#">1</a></li>--%>
+        <%--                        <li><a href="#">2</a></li>--%>
+        <%--                        <li><a href="#">3</a></li>--%>
+        <%--                        <li><a href="#">4</a></li>--%>
+        <%--                        <li><a href="#">5</a></li>--%>
+        <%--                        <li><a href="#">下一页</a></li>--%>
+        <%--                        <li class="disabled"><a href="#">末页</a></li>--%>
+        <%--                    </ul>--%>
+        <%--                </nav>--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
     </div>
 </div>
 </body>

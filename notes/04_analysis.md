@@ -296,4 +296,32 @@ ${cookie.loginAct.value}
 
 ## 75 详解bs_pagination插件的参数
 
+## 76 实现市场活动的翻页查询
+
+```text
+3. 块元素和行元素:
+
+4. js的系统函数
+    1. eval()
+    2. parseInt(): 获取小数的整数部分
+    
+    var str = "var a = 100;"
+    eval(str);
+    alert(a);
+    
+5. 演示分页查询市场活动的过程:
+    1. queryActivityByConditionForPaging(1, 10)
+        |-> 把pageNo，pageSize和查询条件一起发送到后台，查询数据。
+        |-> data
+            |-> activityList: 遍历list，显示列表
+            |-> totalRows: 调用工具函数，显示分页信息
+    2. 当用户切换页号或者每页显示条数时: pageNo，pageSize可能会发生改变
+        |-> 分页信息自动变化
+        |-> 手动刷新列表:
+            |-> 把pageNo，pageSize和查询条件一起发送到后台，查询数据
+            |-> data
+                |-> activityList: 遍历list，显示列表
+                |-> totalRows: 调用工具函数，显示分页信息
+```
+
 
