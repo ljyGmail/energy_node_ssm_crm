@@ -332,6 +332,8 @@ ${cookie.loginAct.value}
 
 ## 80 删除市场活动设计
 
+![img.png](images/80_delete_activity_process.png)
+
 ## 81 实现市场活动的全选和取消全选1
 
 ## 82 实现市场活动的全选和取消全选2
@@ -365,5 +367,10 @@ ${cookie.loginAct.value}
 ```
 
 ## 85 回顾市场市场活动流程
+
+## 86 删除市场活动实现Mapper层和Service层
+
+## 87 删除市场活动实现Controller层
+
 
 

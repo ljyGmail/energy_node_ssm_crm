@@ -98,4 +98,26 @@ public class ActivityController {
         resultMap.put("totalRows", totalRows);
         return resultMap;
     }
+
+    @RequestMapping("/workbench/activity/deleteActivityByIds")
+    @ResponseBody
+    public Object deleteActivityByIds(String[] id) {
+        ReturnObject returnObject = new ReturnObject();
+        try {
+            // 调用Service层方法，删除市场活动
+            int ret = activityService.deleteActivityByIds(id);
+
+            if (ret > 0) {
+                returnObject.setCode(Constants.SESSION_USER);
+            } else {
+                returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
+                returnObject.setMessage("系统繁忙，请稍后重试...");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
+            returnObject.setMessage("系统繁忙，请稍后重试...");
+        }
+        return returnObject;
+    }
 }

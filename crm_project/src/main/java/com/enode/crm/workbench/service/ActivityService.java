@@ -21,4 +21,6 @@ public interface ActivityService {
     List<Activity> queryActivityByConditionForPaging(Map<String, Object> map);
 
     int queryCountOfActivitiesByCondition(Map<String, Object> map);
+
+    int deleteActivityByIds(String[] ids);
 }

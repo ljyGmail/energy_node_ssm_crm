@@ -1,6 +1,7 @@
 package com.enode.crm.workbench.mapper;
 
 import com.enode.crm.workbench.domain.Activity;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -65,4 +66,12 @@ public interface ActivityMapper {
      * @return
      */
     int selectCountOfActivitiesByCondition(Map<String, Object> map);
+
+    /**
+     * 根据ids批量删除市场活动
+     *
+     * @param ids
+     * @return
+     */
+    int deleteActivityByIds(@Param("ids") String[] ids);
 }

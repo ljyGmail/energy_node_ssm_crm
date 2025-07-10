@@ -255,4 +255,13 @@
         on a.edit_by = u3.id
         <include refid="activityQueryCondition"/>
     </select>
+
+    <!-- int deleteActivityByIds(String[] ids); -->
+    <delete id="deleteActivityByIds" parameterType="java.lang.String[]">
+        delete from tbl_activity
+        where id in
+        <foreach collection="ids" open="(" close=")" item="id" separator=",">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
