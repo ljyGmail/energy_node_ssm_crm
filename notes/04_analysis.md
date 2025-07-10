@@ -372,5 +372,34 @@ ${cookie.loginAct.value}
 
 ## 87 删除市场活动实现Controller层
 
+## 88 删除市场活动实现前台页面
 
+```text
+2. js中截取字符串:
+    str.substr(startIndex, length); // 从下标startIndex的字符开始截取，截取length个字符
+    str.substring(startIndex, endIndex); // 从下标startIndex的字符开始截取，截取到下标是endIndex到字符
+    var str = "beijing";
+    str.substr(2, 3); // iji
+    str.substring(2, 4); // ij
+    
+3. ajax向后台发送请求时，可以通过data提交参数，data到数据格式有三种:
+    1) data: {
+            k1: v1,
+            k2: v2,
+            k2: v22, // 这种方式不能提交同名的key
+            ...
+        }
+        * 劣势: 只能向后台提交一个参数名对应一个参数值的数据。
+            不能向后台提交一个参数名对应多个参数值的数据。
+            只能向后台提交字符串数据。
+          优势: 操作简单。
+    2) data: k1=v1&k2=v2&...
+        * 优势: 既能向后台提交一个参数名对应一个参数值的数据。
+            也能向后台提交一个参数名对应多个参数值的数据。
+          劣势: 操作麻烦。
+               只能向后台提交字符串数据。
+    3) data: FormData对象
+        * 优势: 不仅能提交字符串数据，还能提交二进制数据。
+          劣势: 操作更麻烦。
+```
 

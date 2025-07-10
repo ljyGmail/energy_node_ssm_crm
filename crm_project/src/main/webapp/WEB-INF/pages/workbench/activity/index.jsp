@@ -161,6 +161,43 @@
                 const allChecked = $('#tBody input:checkbox').size() === $('#tBody input:checkbox:checked').size()
                 $('#checkAll').prop("checked", allChecked);
             });
+
+            // 给"删除"按钮添加单击事件
+            $('#deleteActivityBtn').click(function () {
+                // 收集参数
+                // 获取列表中所有被选中的checkbox
+                const checkedIds = $('#tBody input:checkbox:checked');
+
+                if (checkedIds.size() === 0) {
+                    alert('请选择要删除的市场活动');
+                    return;
+                }
+                if (confirm('确定要删除选中的市场活动吗?')) {
+                    let ids = '';
+                    $.each(checkedIds, function () {
+                        ids += 'id=' + this.value + '&';
+                    });
+                    ids = ids.substr(0, ids.length - 1);
+
+                    // 发送请求
+                    $.ajax({
+                        url: 'workbench/activity/deleteActivityByIds.do',
+                        data: ids,
+                        type: 'post',
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.code == 1) {
+                                // 刷新市场活动列表，显示第一页数据，保持每页显示的条数不变
+                                const rowsPerPage = $('#page-master').bs_pagination('getOption', 'rowsPerPage');
+                                queryActivityByConditionForPaging(1, rowsPerPage);
+                            } else {
+                                // 提示信息
+                                alert(data.message);
+                            }
+                        }
+                    });
+                }
+            });
         });
 
         function queryActivityByConditionForPaging(pageNo, pageSize) {

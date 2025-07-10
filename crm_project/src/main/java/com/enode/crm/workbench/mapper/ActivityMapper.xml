@@ -257,7 +257,7 @@
     </select>
 
     <!-- int deleteActivityByIds(String[] ids); -->
-    <delete id="deleteActivityByIds" parameterType="java.lang.String[]">
+    <delete id="deleteActivityByIds" parameterType="string">
         delete from tbl_activity
         where id in
         <foreach collection="ids" open="(" close=")" item="id" separator=",">

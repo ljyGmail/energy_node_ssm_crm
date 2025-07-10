@@ -99,7 +99,7 @@ public class ActivityController {
         return resultMap;
     }
 
-    @RequestMapping("/workbench/activity/deleteActivityByIds")
+    @RequestMapping("/workbench/activity/deleteActivityByIds.do")
     @ResponseBody
     public Object deleteActivityByIds(String[] id) {
         ReturnObject returnObject = new ReturnObject();
@@ -108,7 +108,7 @@ public class ActivityController {
             int ret = activityService.deleteActivityByIds(id);
 
             if (ret > 0) {
-                returnObject.setCode(Constants.SESSION_USER);
+                returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
             } else {
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
                 returnObject.setMessage("系统繁忙，请稍后重试...");
