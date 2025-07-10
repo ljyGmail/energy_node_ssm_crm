@@ -140,6 +140,27 @@
                 // 当用户点击"查询"按钮，查询所有符合条件的数据的第一页以及所有符合条件数据的总条数
                 queryActivityByConditionForPaging(1, rowsPerPage);
             });
+
+            // 给"全选"按钮添加单击事件
+            $('#checkAll').click(function () {
+                $('#tBody input:checkbox').prop('checked', this.checked);
+            });
+
+            /*
+            // 为动态生成的复选框添加单击事件，和全选复选框形成联动的效果
+            // 下面的方式无法实现效果，因为复选框是动态生成的
+            $('#tBody input:checkbox').click(function () {
+                console.log('xxx');
+                const allChecked = $('#tBody input:checkbox').size() === $('#tBody input:checkbox:checked').size()
+                $('#checkAll').prop("checked", allChecked);
+            });
+             */
+
+            // 为动态生成的复选框添加单击事件，和全选复选框形成联动的效果
+            $('#tBody').on('click', 'input:checkbox', function () {
+                const allChecked = $('#tBody input:checkbox').size() === $('#tBody input:checkbox:checked').size()
+                $('#checkAll').prop("checked", allChecked);
+            });
         });
 
         function queryActivityByConditionForPaging(pageNo, pageSize) {
@@ -179,6 +200,9 @@
                         htmlStr += '</tr>';
                     });
                     $('#tBody').html(htmlStr);
+
+                    // 每次重新获取市场活动列表数据时，需要将全选复选框的状态设置为未选状态。
+                    $('#checkAll').prop('checked', false);
 
                     // 计算总页数
                     let totalPages = 1;
