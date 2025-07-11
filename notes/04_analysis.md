@@ -430,6 +430,7 @@ ${cookie.loginAct.value}
 ## 96 实现保存修改的市场活动的Controller层
 
 ## 97 实现保存修改的市场活动的前台页面
+
 ```text
 2. 使用jQuery获取或设置元素的value属性值:
     获取: 选择器.val();
@@ -437,5 +438,51 @@ ${cookie.loginAct.value}
 ```
 
 ## 98 测试保存修改的市场活动
+
+## 99 分析导出市场活动的应用场景
+
+## 100 导出市场活动的需求分析
+
+![img.png](images/100_export_activity_requirements.png)
+
+## 101 分析导出市场活动的实现
+
+```text
+3. 导出市场活动
+    1) 给"批量导出"按钮添加单击事件，发送导出请求。
+    2) 查询所有的市场活动。
+    3) 创建一个excel文件，并且把市场活动写到excel文件中。
+    4) 把生成的excel文件输出到浏览器(文件下载)。
+```
+
+## 102 介绍apache-poi插件
+
+## 103 介绍apache-poi插件的使用
+
+## 104 演示使用apache-poi生成excel文件
+
+```text
+技术准备:
+    1) 使用Java生成excel文件: iText, apache-POI
+        关于办公文档插件使用的基本思想: 把办公文档的所有元素都封装成普通的Java类，开发人员通过操作这些类达到操作办公文档的目的。
+            
+        文件 ------------- HSSFWorkbook
+        页 ------------- HSSFSheet
+        行 ------------- HSSFRow
+        列 ------------- HSSFCell
+        样式 ------------- HSSFCellStyle
+        
+        使用apache-poi生成excel:
+            a) 添加依赖:
+                <dependency>
+                    <groupId>org.apache.poi</groupId>
+                    <artifactId>poi</artifactId>
+                    <version>3.15</version>
+                </dependency>
+            b) 使用封装类生成excel文件:
+        
+    2) 文件下载:
+```
+
 
 

@@ -131,8 +131,8 @@
 
 ```mysql
 SHOW DATABASES;
-CREATE DATABASE crm2025;
-USE crm2025;
+CREATE DATABASE crm;
+USE crm;
 SHOW TABLES;
 
 -- ----------------------------
