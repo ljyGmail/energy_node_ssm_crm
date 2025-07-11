@@ -244,7 +244,7 @@ ${cookie.loginAct.value}
 
 ## 62 分页查询市场活动设计
 
-![img.png](images/62_market_activity_pageing_process.png)
+![img.png](images/062_market_activity_pageing_process.png)
 
 ## 63 分页查询市场活动列表实现Mapper层
 
@@ -332,7 +332,7 @@ ${cookie.loginAct.value}
 
 ## 80 删除市场活动设计
 
-![img.png](images/80_delete_activity_process.png)
+![img.png](images/080_delete_activity_process.png)
 
 ## 81 实现市场活动的全选和取消全选1
 
@@ -402,4 +402,40 @@ ${cookie.loginAct.value}
         * 优势: 不仅能提交字符串数据，还能提交二进制数据。
           劣势: 操作更麻烦。
 ```
+
+## 89 修改市场活动需求分析
+
+![img.png](images/089_update_activity_requirements.png)
+
+## 90 修改市场活动设计
+
+![img.png](images/090_update_activity_ui_process.png)
+
+## 91 修改市场活动实现Mapper层和Service层
+
+## 92 修改市场活动实现Controller层
+
+## 93 修改市场活动实现前台页面
+
+## 94 设计保存修改的市场活动
+
+```text
+1. 封装参数:
+    1) 如果做查询条件，或者参数之间不是属于一个实体类对象，封装成Map。
+    2) 如果做写数据，并且参数就是属于一个实体类对象，封装成实体对象。
+```
+
+## 95 实现保存修改的市场活动的Mapper层和Service层
+
+## 96 实现保存修改的市场活动的Controller层
+
+## 97 实现保存修改的市场活动的前台页面
+```text
+2. 使用jQuery获取或设置元素的value属性值:
+    获取: 选择器.val();
+    设置: 选择器.val(属性值);
+```
+
+## 98 测试保存修改的市场活动
+
 
