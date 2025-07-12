@@ -461,6 +461,12 @@ ${cookie.loginAct.value}
 
 ## 104 演示使用apache-poi生成excel文件
 
+## 105 使用apache-poi修饰excel文件效果
+
+## 106 演示文件下载
+
+## 107 测试文件下载功能
+
 ```text
 技术准备:
     1) 使用Java生成excel文件: iText, apache-POI
@@ -482,6 +488,11 @@ ${cookie.loginAct.value}
             b) 使用封装类生成excel文件:
         
     2) 文件下载:
+    file_download_test.jsp
+    ActivityController
+        |->fileDownload()
+        
+    * 所有文件下载的请求只能是同步的。
 ```
 
 

@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -156,5 +161,30 @@ public class ActivityController {
             returnObject.setMessage("系统忙，请稍后再试...");
         }
         return returnObject;
+    }
+
+    @RequestMapping("/workbench/activity/fileDownload.do")
+    public void fileDownload(HttpServletResponse response, HttpServletRequest request) throws IOException {
+        // 1. 设置响应类型
+        response.setContentType("application/octet-stream;charset=UTF-8");
+        // 2. 获取输出流
+        OutputStream out = response.getOutputStream();
+
+        // 浏览器接收到响应信息之后，默认情况下，直接在显示窗口中打开响应信息，即使打不开，也会调用应用程序打开。只有实在打不开，才会激活文件下载窗口。
+        // 可以设置响应头信息，使浏览器接收到响应信息之后，直接激活文件窗口，即使能打开也不直接打开。
+        response.addHeader("Content-Disposition", "attachment;filename=my_student_list.xls");
+
+        // 3. 读取excel文件(InputStream)，把文件输出到浏览器(OutputStream)
+        // /Users/liangjinyong/Desktop/Playground/ssm_playground/energy_node_ssm_crm/crm_project/studentList.xls
+        InputStream is = new FileInputStream("/Users/liangjinyong/Desktop/Playground/ssm_playground/energy_node_ssm_crm/crm_project/studentList.xls");
+        byte[] buff = new byte[256];
+        int len = 0;
+        while ((len = is.read(buff)) != -1) {
+            out.write(buff, 0, len);
+        }
+
+        // 4. 关闭资源
+        is.close();
+        out.flush();
     }
 }
