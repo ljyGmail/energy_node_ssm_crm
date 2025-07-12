@@ -304,6 +304,12 @@
                     },
                 })
             });
+
+            // 给"批量导出"按钮添加单击事件
+            $('#exportAllActivitiesBtn').click(function () {
+                // 发送同步请求
+                window.location.href = 'workbench/activity/exportAllActivities.do';
+            });
         });
 
         function queryActivityByConditionForPaging(pageNo, pageSize) {
@@ -615,7 +621,7 @@
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#importActivityModal">
                     <span class="glyphicon glyphicon-import"></span> 上传列表数据（导入）
                 </button>
-                <button id="exportActivityAllBtn" type="button" class="btn btn-default"><span
+                <button id="exportAllActivitiesBtn" type="button" class="btn btn-default"><span
                         class="glyphicon glyphicon-export"></span> 下载列表数据（批量导出）
                 </button>
                 <button id="exportActivityCheckedBtn" type="button" class="btn btn-default"><span
