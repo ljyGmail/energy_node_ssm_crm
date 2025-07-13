@@ -30,11 +30,11 @@
                 let isRemPwd = $('#isRemPwd').prop('checked');
                 // 表单验证
                 if (loginAct == '') {
-                    alert('用户名不能为空');
+                    alert('계정을 입력하세요');
                     return;
                 }
                 if (loginPwd == '') {
-                    alert('密码不能为空');
+                    alert('비밀번호를 입력하세요');
                     return;
                 }
 
@@ -65,7 +65,7 @@
                         // 否则，如果该函数返回false，则ajax放弃向后台发送请求
 
                         // 显示正在验证
-                        $('#msg').text('正在努力验证...');
+                        $('#msg').text('로딩 중...');
                         return true;
                     },
                 })
@@ -79,23 +79,23 @@
 </div>
 <div id="top" style="height: 50px; background-color: #3C3C3C; width: 100%;">
     <div style="position: absolute; top: 5px; left: 0px; font-size: 30px; font-weight: 400; color: white; font-family: 'times new roman'">
-        CRM &nbsp;<span style="font-size: 12px;">&copy;2022 ylx</span></div>
+        CRM &nbsp;<span style="font-size: 12px;">&copy;2025 LJY</span></div>
 </div>
 
 <div style="position: absolute; top: 120px; right: 100px;width:450px;height:400px;border:1px solid #D5D5D5">
     <div style="position: absolute; top: 0px; right: 60px;">
         <div class="page-header">
-            <h1>登录</h1>
+            <h1>로그인</h1>
         </div>
         <form action="workbench/index.html" class="form-horizontal" role="form">
             <div class="form-group form-group-lg">
                 <div style="width: 350px;">
                     <input id="loginAct" class="form-control" type="text" value="${cookie.loginAct.value}"
-                           placeholder="用户名">
+                           placeholder="계정">
                 </div>
                 <div style="width: 350px; position: relative;top: 20px;">
                     <input id="loginPwd" class="form-control" type="password" value="${cookie.loginPwd.value}"
-                           placeholder="密码">
+                           placeholder="비밀번호">
                 </div>
                 <div class="checkbox" style="position: relative;top: 30px; left: 10px;">
                     <label>
@@ -106,18 +106,18 @@
                         <c:if test="${empty cookie.loginAct or empty cookie.loginPwd}">
                             <input id="isRemPwd" type="checkbox">
                         </c:if>
-                        十天内免登录
+                        10일내에 기억하기
                     </label>
                     &nbsp;&nbsp;
                     <span id="msg" style="color: red"></span>
                 </div>
                 <button type="button" id="loginBtn" class="btn btn-primary btn-lg btn-block"
-                        style="width: 350px; position: relative;top: 45px;">登录
+                        style="width: 350px; position: relative;top: 45px;">로그인
                 </button>
                 <br/>
                 <!--
                 <button type="button" class="btn btn-primary btn-lg btn-block" id="registerBtn"
-                        style="width: 350px; position: relative;top: 45px;">注册
+                        style="width: 350px; position: relative;top: 45px;">회원가입
                 </button>
                 -->
             </div>
