@@ -252,18 +252,21 @@ public class ActivityController {
         }
 
         // 根据wb对象生成excel文件
-        OutputStream os = new FileOutputStream("/Users/liangjinyong/Desktop/activityList.xls");
+        /*
+        OutoputStream os = new FileOutputStream("/Users/liangjinyong/Desktop/activityList.xls");
         wb.write(os);
+         */
 
         // 关闭资源
-        os.close();
-        wb.close();
+        // os.close();
+        // wb.close();
 
         // 把生成的excel文件下载到客户段
         response.setContentType("application/octet-stream;charset=UTF-8");
+        response.addHeader("Content-Disposition", "attachment;filename=activityList.xls");
 
         OutputStream out = response.getOutputStream();
-        response.addHeader("Content-Disposition", "attachment;filename=activityList.xls");
+        /*
         InputStream is = new FileInputStream("/Users/liangjinyong/Desktop/activityList.xls");
 
         byte[] buff = new byte[256];
@@ -274,6 +277,11 @@ public class ActivityController {
 
         // 关闭资源
         is.close();
+         */
+
+        wb.write(out);
+
+        wb.close();
         out.flush();
     }
 }
