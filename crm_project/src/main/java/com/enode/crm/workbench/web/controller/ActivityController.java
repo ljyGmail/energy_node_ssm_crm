@@ -71,12 +71,12 @@ public class ActivityController {
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
             } else {
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-                returnObject.setMessage("系统繁忙，请稍后重试...");
+                returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
             }
         } catch (Exception e) {
             e.printStackTrace();
             returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-            returnObject.setMessage("系统繁忙，请稍后重试...");
+            returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
         }
         return returnObject;
     }
@@ -122,7 +122,7 @@ public class ActivityController {
         } catch (Exception e) {
             e.printStackTrace();
             returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-            returnObject.setMessage("系统繁忙，请稍后重试...");
+            returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
         }
         return returnObject;
     }
@@ -155,11 +155,11 @@ public class ActivityController {
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
             } else {
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-                returnObject.setMessage("系统忙，请稍后再试...");
+                returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
             }
         } catch (Exception e) {
             returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-            returnObject.setMessage("系统忙，请稍后再试...");
+            returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
         }
         return returnObject;
     }

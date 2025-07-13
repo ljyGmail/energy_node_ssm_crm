@@ -58,22 +58,22 @@ public class UserController {
         if (user == null) {
             // 登录失败: 用户名或密码错误
             returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-            returnObject.setMessage("用户名或者密码错误");
+            returnObject.setMessage("계정/비밀번호가 틀렸습니다");
         } else {
             // 进一步判断账号是否合法
             String nowStr = DateUtils.formateDateTime(new Date());
             if (nowStr.compareTo(user.getExpireTime()) > 0) {
                 // 登录失败，账号已过期
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-                returnObject.setMessage("账号已过期");
+                returnObject.setMessage("계정의 유효기간이 지났습니다");
             } else if ("0".equals(user.getLockState())) {
                 // 登录失败，状态被锁定
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-                returnObject.setMessage("状态被锁定");
+                returnObject.setMessage("해당 계정이 비활성화되었습니다");
             } else if (!user.getAllowIps().contains(request.getRemoteAddr())) {
                 // 登录失败，IP受限
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
-                returnObject.setMessage("IP受限");
+                returnObject.setMessage("해당 IP는 허용되지 않습니다");
             } else {
                 // 登录成功
                 returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);

@@ -47,17 +47,17 @@
                 let description = $.trim($('#create-description').val());
                 // 表单验证
                 if (owner === '') {
-                    alert('所有者不能为空');
+                    alert('소유자를 선택하세요');
                     return;
                 }
                 if (name === '') {
-                    alert('名称不能为空');
+                    alert('마케팅 활동 명칭을 입력하세요');
                     return;
                 }
                 if (startDate !== '' && endDate !== '') {
                     // 使用字符串的大小代替日期的大小
                     if (endDate < startDate) {
-                        alert('结束日期不能比开始日期小');
+                        alert('종료일자는 시작일자보다 이르면 안 됩니다');
                         return;
                     }
                 }
@@ -85,7 +85,7 @@
                  */
                 const regExp = /^(([1-9]\d*)|0)$/
                 if (!regExp.test(cost)) {
-                    alert('成本只能是非负整数');
+                    alert('비용은 0 이상의 정수만 입력할 수 있습니다');
                     return;
                 }
 
@@ -169,10 +169,10 @@
                 const checkedIds = $('#tBody input:checkbox:checked');
 
                 if (checkedIds.size() === 0) {
-                    alert('请选择要删除的市场活动');
+                    alert('삭제할 마케팅 활동을 체크하세요');
                     return;
                 }
-                if (confirm('确定要删除选中的市场活动吗?')) {
+                if (confirm('해당 마케팅 활동을 삭제하겠습니까?')) {
                     let ids = '';
                     $.each(checkedIds, function () {
                         ids += 'id=' + this.value + '&';
@@ -206,12 +206,12 @@
 
                 // 确保只有一个复选框被选中
                 if (checkedIds.size() == 0) {
-                    alert('请选择要修改的市场活动');
+                    alert('수정할 마케팅 활동을 체크하세요');
                     return;
                 }
 
                 if (checkedIds.size() > 1) {
-                    alert('请选择1个要修改的市场活动');
+                    alert('수정할 마케팅 활동을 1개 선택하세요');
                     return;
                 }
 
@@ -250,19 +250,18 @@
                 const cost = $.trim($('#edit-cost').val());
                 const description = $.trim($('#edit-description').val());
 
-                // 表单验证
                 if (owner === '') {
-                    alert('所有者不能为空');
+                    alert('소유자를 선택하세요');
                     return;
                 }
                 if (name === '') {
-                    alert('名称不能为空');
+                    alert('마케팅 활동 명칭을 입력하세요');
                     return;
                 }
                 if (startDate !== '' && endDate !== '') {
                     // 使用字符串的大小代替日期的大小
                     if (endDate < startDate) {
-                        alert('结束日期不能比开始日期小');
+                        alert('종료일자는 시작일자보다 이르면 안 됩니다');
                         return;
                     }
                 }
@@ -316,7 +315,7 @@
                 const checkedIds = $('#tBody input:checkbox:checked');
 
                 if (checkedIds.size() === 0) {
-                    alert('请选择要导出的市场活动');
+                    alert('다운로드할 마케팅 활동을 체크하세요');
                     return;
                 }
 
@@ -415,13 +414,12 @@
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel1">创建市场活动</h4>
+                <h4 class="modal-title" id="myModalLabel1">마케팅 활동 등롱</h4>
             </div>
             <div class="modal-body">
                 <form id="createActivityForm" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="create-marketActivityOwner" class="col-sm-2 control-label">所有者<span
-                                style="font-size: 15px; color: red;">*</span></label>
+                        <label for="create-marketActivityOwner" class="col-sm-2 control-label">소유자</label>
                         <div class="col-sm-10" style="width: 300px;">
                             <select class="form-control" id="create-marketActivityOwner">
                                 <c:forEach items="${userList}" var="user">
@@ -429,7 +427,7 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <label for="create-marketActivityName" class="col-sm-2 control-label">名称<span
+                        <label for="create-marketActivityName" class="col-sm-2 control-label">마케팅 활동 명칭<span
                                 style="font-size: 15px; color: red;">*</span></label>
                         <div class="col-sm-10" style="width: 300px;">
                             <input type="text" class="form-control" id="create-marketActivityName">
@@ -437,24 +435,23 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="create-startDate" class="col-sm-2 control-label">开始日期</label>
+                        <label for="create-startDate" class="col-sm-2 control-label">시작일자</label>
                         <div class="col-sm-10" style="width: 300px;">
                             <input type="text" class="form-control my-date" id="create-startDate" readonly>
                         </div>
-                        <label for="create-endDate" class="col-sm-2 control-label">结束日期</label>
+                        <label for="create-endDate" class="col-sm-2 control-label">종료일자</label>
                         <div class="col-sm-10" style="width: 300px;">
                             <input type="text" class="form-control my-date" id="create-endDate" readonly>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="create-cost" class="col-sm-2 control-label">成本<span
-                                style="font-size: 15px; color: red;">*</span></label>
+                        <label for="create-cost" class="col-sm-2 control-label">원가</label>
                         <div class="col-sm-10" style="width: 300px;">
                             <input type="text" class="form-control" id="create-cost">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="create-description" class="col-sm-2 control-label">描述</label>
+                        <label for="create-description" class="col-sm-2 control-label">상세</label>
                         <div class="col-sm-10" style="width: 81%;">
                             <textarea class="form-control" rows="3" id="create-description"></textarea>
                         </div>
@@ -462,9 +459,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeCreateActivityBtn">关闭
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="closeCreateActivityBtn">닫기
                 </button>
-                <button type="button" class="btn btn-primary" id="saveCreatedActivityBtn">保存</button>
+                <button type="button" class="btn btn-primary" id="saveCreatedActivityBtn">저장</button>
             </div>
         </div>
     </div>
@@ -478,15 +475,14 @@
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel2">修改市场活动</h4>
+                <h4 class="modal-title" id="myModalLabel2">마케팅 활동 수정</h4>
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" role="form">
                     <!--设置一个隐藏标签，用来存放id，供后面修改数据时操作-->
                     <input type="hidden" id="edit-id">
                     <div class="form-group">
-                        <label for="edit-marketActivityOwner" id="owner" class="col-sm-2 control-label">所有者<span
-                                style="font-size: 15px; color: red;">*</span></label>
+                        <label for="edit-marketActivityOwner" id="owner" class="col-sm-2 control-label">소유자</label>
                         <div class="col-sm-10" style="width: 300px;">
                             <select class="form-control" id="edit-marketActivityOwner">
                                 <c:forEach items="${userList}" var="user">
@@ -494,7 +490,7 @@
                                 </c:forEach>
                             </select>
                         </div>
-                        <label for="edit-marketActivityName" class="col-sm-2 control-label">名称<span
+                        <label for="edit-marketActivityName" class="col-sm-2 control-label">마케팅 활동 명칭<span
                                 style="font-size: 15px; color: red;">*</span></label>
                         <div class="col-sm-10" style="width: 300px;">
                             <input type="text" class="form-control" id="edit-marketActivityName" value="发传单">
@@ -502,26 +498,25 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-startDate" class="col-sm-2 control-label">开始日期</label>
+                        <label for="edit-startDate" class="col-sm-2 control-label">시작일자</label>
                         <div class="col-sm-10" style="width: 300px;">
                             <input type="text" class="form-control my-date" id="edit-startDate" value="2020-10-10">
                         </div>
-                        <label for="edit-endDate" class="col-sm-2 control-label">结束日期</label>
+                        <label for="edit-endDate" class="col-sm-2 control-label">종료일자</label>
                         <div class="col-sm-10" style="width: 300px;">
                             <input type="text" class="form-control my-date" id="edit-endDate" value="2020-10-20">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-cost" class="col-sm-2 control-label">成本<span
-                                style="font-size: 15px; color: red;">*</span></label>
+                        <label for="edit-cost" class="col-sm-2 control-label">원가</label>
                         <div class="col-sm-10" style="width: 300px;">
                             <input type="text" class="form-control" id="edit-cost" value="5,000">
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="edit-description" class="col-sm-2 control-label">描述</label>
+                        <label for="edit-description" class="col-sm-2 control-label">상세</label>
                         <div class="col-sm-10" style="width: 81%;">
                             <textarea class="form-control" rows="3" id="edit-description">市场活动Marketing，是指品牌主办或参与的展览会议与公关市场活动，包括自行主办的各类研讨会、客户交流会、演示会、新产品发布会、体验会、答谢会、年会和出席参加并布展或演讲的展览会、研讨会、行业交流会、颁奖典礼等</textarea>
                         </div>
@@ -529,8 +524,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" id="saveEditedActivityBtn">更新</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-primary" id="saveEditedActivityBtn">수정</button>
             </div>
         </div>
     </div>
@@ -544,34 +539,34 @@
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">导入市场活动</h4>
+                <h4 class="modal-title" id="myModalLabel">마케팅 활동 가져오기</h4>
             </div>
             <div class="modal-body" style="height: 350px;">
                 <div style="position: relative;top: 20px; left: 50px;">
-                    请选择要上传的文件：<small style="color: gray;">[仅支持.xls]</small>
+                    업로드할 파일을 선택하세요:<small style="color: gray;">[.xls파일만 가능]</small>
                 </div>
                 <div style="position: relative;top: 40px; left: 50px;">
                     <input type="file" id="activityFile">
                     <br>
                     <a href="file/activity.xls" download="activity-mode.xls"
-                       style="text-decoration:none;color: #2a6496"><b>下载导入文件模板</b></a>
+                       style="text-decoration:none;color: #2a6496"><b>엑셀 템플릿 다운로드</b></a>
                 </div>
                 <div style="position: relative; width: 400px; height: 320px; left: 45% ; top: -40px;">
-                    <h3>重要提示</h3>
+                    <h3>안내</h3>
                     <ul>
-                        <li>操作仅针对Excel，仅支持后缀名为XLS的文件。</li>
-                        <li>给定文件的第一行将视为字段名。</li>
-                        <li>请确认您的文件大小不超过5MB。</li>
-                        <li>日期值以文本形式保存，必须符合yyyy-MM-dd格式。</li>
-                        <li>日期时间以文本形式保存，必须符合yyyy-MM-dd HH:mm:ss的格式。</li>
-                        <li>默认情况下，字符编码是UTF-8 (统一码)，请确保您导入的文件使用的是正确的字符编码方式。</li>
-                        <li>建议您在导入真实数据之前用测试文件测试文件导入功能。</li>
+                        <li>본 기능은 Excel 파일만 지원하며, 파일 확장자가 .xls인 경우에만 가능합니다.</li>
+                        <li>업로드한 파일의 첫 번째 행은 필드명으로 인식됩니다.</li>
+                        <li>파일 크기는 최대 5MB를 초과하지 않아야 합니다.</li>
+                        <li>날짜 값은 텍스트 형식으로 저장되며, yyyy-MM-dd 형식을 따라야 합니다.</li>
+                        <li>날짜와 시간은 텍스트 형식으로 저장되며, yyyy-MM-dd HH:mm:ss 형식을 따라야 합니다.</li>
+                        <li>기본 문자 인코딩은 UTF-8(유니코드)입니다. 올바른 문자 인코딩 방식으로 저장된 파일인지 확인해 주세요.</li>
+                        <li>실제 데이터를 가져오기 전에 테스트 파일로 가져오기 기능을 사전 테스트해 보시길 권장합니다.</li>
                     </ul>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button id="importActivityBtn" type="button" class="btn btn-primary">导入</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                <button id="importActivityBtn" type="button" class="btn btn-primary">가져오기</button>
             </div>
         </div>
     </div>
@@ -580,7 +575,7 @@
 <div>
     <div style="position: relative; left: 10px; top: -10px;">
         <div class="page-header">
-            <h3>市场活动列表</h3>
+            <h3>마켓팅 활동 목록</h3>
         </div>
     </div>
 </div>
@@ -592,14 +587,14 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">名称</div>
+                        <div class="input-group-addon">명칭</div>
                         <input class="form-control clear-control" type="text" id="query-name">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">所有者</div>
+                        <div class="input-group-addon">소유자</div>
                         <input class="form-control clear-control" type="text" id="query-owner">
                     </div>
                 </div>
@@ -607,44 +602,44 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">开始日期</div>
+                        <div class="input-group-addon">시작일자</div>
                         <input class="form-control my-date clear-control" type="text" id="query-startDate" readonly/>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
-                        <div class="input-group-addon">结束日期</div>
+                        <div class="input-group-addon">종료일자</div>
                         <input class="form-control my-date clear-control" type="text" id="query-endDate" readonly>
                     </div>
                 </div>
 
-                <button type="button" class="btn btn-default" id="queryActivityBtn">查询</button>
+                <button type="button" class="btn btn-default" id="queryActivityBtn">조회</button>
                 &nbsp;
-                <button type="button" class="btn btn-default" id="clearActivityBtn">清空</button>
+                <button type="button" class="btn btn-default" id="clearActivityBtn">초기화</button>
             </form>
         </div>
         <div class="btn-toolbar" role="toolbar"
              style="background-color: #F7F7F7; height: 50px; position: relative;top: 5px;">
             <div class="btn-group" style="position: relative; top: 18%;">
                 <button type="button" class="btn btn-primary" id="createActivityBtn"><span
-                        class="glyphicon glyphicon-plus"></span> 创建
+                        class="glyphicon glyphicon-plus"></span> 등록
                 </button>
                 <button type="button" class="btn btn-default" id="editActivityBtn"><span
-                        class="glyphicon glyphicon-pencil"></span> 修改
+                        class="glyphicon glyphicon-pencil"></span> 수정
                 </button>
                 <button type="button" class="btn btn-danger" id="deleteActivityBtn"><span
-                        class="glyphicon glyphicon-minus"></span> 删除
+                        class="glyphicon glyphicon-minus"></span> 삭제
                 </button>
             </div>
             <div class="btn-group" style="position: relative; top: 18%;">
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#importActivityModal">
-                    <span class="glyphicon glyphicon-import"></span> 上传列表数据（导入）
+                    <span class="glyphicon glyphicon-import"></span> 데이터 목록 업로드
                 </button>
                 <button id="exportAllActivitiesBtn" type="button" class="btn btn-default"><span
-                        class="glyphicon glyphicon-export"></span> 下载列表数据（批量导出）
+                        class="glyphicon glyphicon-export"></span> 데이터 목록 다운로드(일괄)
                 </button>
                 <button id="exportSelectedActivitiesBtn" type="button" class="btn btn-default"><span
-                        class="glyphicon glyphicon-export"></span> 下载列表数据（选择导出）
+                        class="glyphicon glyphicon-export"></span> 데이터 목록 다운로드(개별)
                 </button>
             </div>
         </div>
@@ -653,10 +648,10 @@
                 <thead>
                 <tr style="color: #B3B3B3;">
                     <td><input type="checkbox" id="checkAll"/></td>
-                    <td>名称</td>
-                    <td>所有者</td>
-                    <td>开始日期</td>
-                    <td>结束日期</td>
+                    <td>명칭</td>
+                    <td>소유자</td>
+                    <td>시작일자</td>
+                    <td>종료일자</td>
                 </tr>
                 </thead>
                 <tbody id="tBody">
