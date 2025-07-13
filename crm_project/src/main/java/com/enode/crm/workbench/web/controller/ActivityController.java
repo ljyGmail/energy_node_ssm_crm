@@ -284,4 +284,78 @@ public class ActivityController {
         wb.close();
         out.flush();
     }
+
+    @RequestMapping("/workbench/activity/exportSelectedActivities.do")
+    public void exportSelectedActivities(String[] id, HttpServletResponse response) throws Exception {
+        // 调用Service层方法，查询用户选择的市场活动
+        List<Activity> activityList = activityService.querySelectedActivities(id);
+        // 创建excel文件，并且把activityList写入到excel文件中
+        HSSFWorkbook wb = new HSSFWorkbook();
+        HSSFSheet sheet = wb.createSheet("Market Activities");
+        HSSFRow row = sheet.createRow(0);
+        HSSFCell cell = row.createCell(0);
+        cell.setCellValue("ID");
+        cell = row.createCell(1);
+        cell.setCellValue("Owner");
+        cell = row.createCell(2);
+        cell.setCellValue("Name");
+        cell = row.createCell(3);
+        cell.setCellValue("Start Date");
+        cell = row.createCell(4);
+        cell.setCellValue("End Date");
+        cell = row.createCell(5);
+        cell.setCellValue("Cost");
+        cell = row.createCell(6);
+        cell.setCellValue("Description");
+        cell = row.createCell(7);
+        cell.setCellValue("Create Time");
+        cell = row.createCell(8);
+        cell.setCellValue("Created By");
+        cell = row.createCell(9);
+        cell.setCellValue("Edit Time");
+        cell = row.createCell(10);
+        cell.setCellValue("Edited By");
+
+        // 遍历activityList，创建HSSFRow对象，生成所有的数据行
+        for (int i = 0; activityList != null && i < activityList.size(); i++) {
+            Activity activity = activityList.get(i);
+
+            // 每遍历出一个activity，生成一行
+            row = sheet.createRow(i + 1);
+            // 每一行创建11列，每一列的数据从activity中获取
+            cell = row.createCell(0);
+            cell.setCellValue(activity.getId());
+            cell = row.createCell(1);
+            cell.setCellValue(activity.getOwner());
+            cell = row.createCell(2);
+            cell.setCellValue(activity.getName());
+            cell = row.createCell(3);
+            cell.setCellValue(activity.getStartDate());
+            cell = row.createCell(4);
+            cell.setCellValue(activity.getEndDate());
+            cell = row.createCell(5);
+            cell.setCellValue(activity.getCost());
+            cell = row.createCell(6);
+            cell.setCellValue(activity.getDescription());
+            cell = row.createCell(7);
+            cell.setCellValue(activity.getCreateTime());
+            cell = row.createCell(8);
+            cell.setCellValue(activity.getCreateBy());
+            cell = row.createCell(9);
+            cell.setCellValue(activity.getEditTime());
+            cell = row.createCell(10);
+            cell.setCellValue(activity.getEditBy());
+        }
+
+        // 把生成的excel文件下载到客户段
+        response.setContentType("application/octet-stream;charset=UTF-8");
+        response.addHeader("Content-Disposition", "attachment;filename=selectedActivityList.xls");
+
+        OutputStream out = response.getOutputStream();
+
+        wb.write(out);
+
+        wb.close();
+        out.flush();
+    }
 }

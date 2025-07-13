@@ -97,4 +97,12 @@ public interface ActivityMapper {
      * @return
      */
     List<Activity> selectAllActivities();
+
+    /**
+     * 查询用户选择的市场活动
+     *
+     * @param ids
+     * @return
+     */
+    List<Activity> selectActivitiesByIds(@Param("ids") String[] ids);
 }

@@ -310,6 +310,25 @@
                 // 发送同步请求
                 window.location.href = 'workbench/activity/exportAllActivities.do';
             });
+
+            $('#exportSelectedActivitiesBtn').click(function () {
+
+                const checkedIds = $('#tBody input:checkbox:checked');
+
+                if (checkedIds.size() === 0) {
+                    alert('请选择要导出的市场活动');
+                    return;
+                }
+
+                // 拼接q请求参数
+                let ids = '';
+                $.each(checkedIds, function () {
+                    ids += 'id=' + this.value + '&';
+                });
+                ids = ids.substr(0, ids.length - 1);
+                // 发送同步请求
+                window.location.href = 'workbench/activity/exportSelectedActivities.do?' + ids;
+            });
         });
 
         function queryActivityByConditionForPaging(pageNo, pageSize) {
@@ -624,7 +643,7 @@
                 <button id="exportAllActivitiesBtn" type="button" class="btn btn-default"><span
                         class="glyphicon glyphicon-export"></span> 下载列表数据（批量导出）
                 </button>
-                <button id="exportActivityCheckedBtn" type="button" class="btn btn-default"><span
+                <button id="exportSelectedActivitiesBtn" type="button" class="btn btn-default"><span
                         class="glyphicon glyphicon-export"></span> 下载列表数据（选择导出）
                 </button>
             </div>
