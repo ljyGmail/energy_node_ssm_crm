@@ -197,13 +197,13 @@
                     통계 차트</a>
                 <ul id="no2" class="nav nav-pills nav-stacked collapse">
                     <li class="liClass"><a href="workbench/chart/activity/index.do" target="workareaFrame">&nbsp;&nbsp;&nbsp;<span
-                            class="glyphicon glyphicon-chevron-right"></span> 市场活动统计图表</a></li>
+                            class="glyphicon glyphicon-chevron-right"></span> 마케팅 활동 통계 차트</a></li>
                     <li class="liClass"><a href="workbench/chart/clue/index.do" target="workareaFrame">&nbsp;&nbsp;&nbsp;<span
-                            class="glyphicon glyphicon-chevron-right"></span> 线索统计图表</a></li>
+                            class="glyphicon glyphicon-chevron-right"></span> 리드 통계 차트</a></li>
                     <li class="liClass"><a href="workbench/chart/customerAndContacts/index.do" target="workareaFrame">&nbsp;&nbsp;&nbsp;<span
-                            class="glyphicon glyphicon-chevron-right"></span> 客户和联系人统计图表</a></li>
+                            class="glyphicon glyphicon-chevron-right"></span> 	고객 및 연락처 통계 차트</a></li>
                     <li class="liClass"><a href="workbench/chart/transaction/index.do" target="workareaFrame">&nbsp;&nbsp;&nbsp;<span
-                            class="glyphicon glyphicon-chevron-right"></span> 交易统计图表</a></li>
+                            class="glyphicon glyphicon-chevron-right"></span> 거래 통계 차트</a></li>
                 </ul>
             </li>
             <li class="liClass"><a href="javascript:void(0);" target="workareaFrame"><span
