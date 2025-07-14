@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -357,5 +358,23 @@ public class ActivityController {
 
         wb.close();
         out.flush();
+    }
+
+    @RequestMapping("/workbench/activity/fileUpload.do")
+    @ResponseBody
+    public Object fileUpload(String userName, MultipartFile myFile) throws IOException {
+        // 把文件数据打印到控制台
+        System.out.println("userName: " + userName);
+        // 把文件在服务器指定的目录中生成一个同样的文件
+        String originalFilename = myFile.getOriginalFilename();
+        File file = new File("/Users/liangjinyong/Desktop/", originalFilename);
+        System.out.println(file.getAbsolutePath());
+        myFile.transferTo(file);
+
+        // 返回响应信息
+        ReturnObject returnObject = new ReturnObject();
+        returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
+        returnObject.setMessage("上传成功");
+        return returnObject;
     }
 }

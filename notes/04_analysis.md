@@ -527,5 +527,33 @@ ${cookie.loginAct.value}
 
 ## 116 分析选择导出市场活动
 
+## 117 导入市场活动的需求分析
+
+![img.png](images/117_import_activities_requirements.png)
+
+## 118 分析导入市场活动的实现
+
+## 120 演示文件上传2
+
+## 121 演示文件上传3
+
+## 122 演示文件上传4
+
+```text
+1. 导入市场活动
+
+    1) 把用户计算机上的excel文件上传到服务器(文件上传)。
+    2) 使用Java解析excel文件，获取excel文件中的数据。
+    3) 把解析出来的数据添加到数据库中。
+    4) 返回响应信息。
+    
+    技术准备:
+        1) 文件上传
+            file_upload_test.jsp
+            ActivityController
+                |->fileUpload()
+        2) 使用Java解析excel文件
+```
+
 
 
