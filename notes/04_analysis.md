@@ -539,6 +539,8 @@ ${cookie.loginAct.value}
 
 ## 122 演示文件上传4
 
+## 123 演示使用apache-poi解析excel文件
+
 ```text
 1. 导入市场活动
 
@@ -552,7 +554,7 @@ ${cookie.loginAct.value}
             file_upload_test.jsp
             ActivityController
                 |->fileUpload()
-        2) 使用Java解析excel文件
+        2) 使用Java解析excel文件: iText, apache-poi
 ```
 
 
