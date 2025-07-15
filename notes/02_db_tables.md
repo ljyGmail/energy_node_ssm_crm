@@ -129,6 +129,11 @@
 
 ## 2. CRM的建表脚本
 
+```Bash
+# 创建Docker容器
+docker run -d -p 3310:3306 --privileged=true -v ~/Desktop/mysql_volume/log:/var/log/mysql -v ~/Desktop/mysql_volume/data:/var/lib/mysql -v ~/Desktop/mysql_volume/conf:/etc/mysql/conf.d -e MYSQL_ROOT_PASSWORD=123456 --name mysql mysql:8.0
+```
+
 ```mysql
 SHOW DATABASES;
 CREATE DATABASE crm;
@@ -162,11 +167,11 @@ CREATE TABLE `tbl_user`
 -- Records of tbl_user
 -- ----------------------------
 INSERT INTO `tbl_user`
-VALUES ('06f5fc056eac41558a964f96daa7f27c', 'ls', '李四', 'yf123', 'ls@163.com', '2018-11-27 21:50:05', '1', 'A001',
-        '192.168.1.1,0:0:0:0:0:0:0:1', '2018-11-22 12:11:40', '李四', null, null);
+VALUES ('06f5fc056eac41558a964f96daa7f27c', 'admin', '홍길동', '1234', 'ls@163.com', '2028-11-27 21:50:05', '1', 'A001',
+        '127.0.0.1', '2028-11-22 12:11:40', '홍길동', null, null);
 INSERT INTO `tbl_user`
-VALUES ('40f6cdea0bd34aceb77492a1656d9fb3', 'zs', '张三', 'yf123', 'zs@qq.com', '2018-11-30 23:50:55', '1', 'A001',
-        '192.168.1.1,192.168.1.2,127.0.0.1,0:0:0:0:0:0:0:1', '2018-11-22 11:37:34', '张三', null, null);
+VALUES ('40f6cdea0bd34aceb77492a1656d9fb3', 'sbb', '슈바빙', 'yf123', 'zs@qq.com', '2028-11-30 23:50:55', '1', 'A001',
+        '192.168.1.1,192.168.1.2,127.0.0.1,0:0:0:0:0:0:0:1', '2028-11-22 11:37:34', '슈바빙', null, null);
 
 drop table if exists tbl_dic_type;
 
