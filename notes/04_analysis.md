@@ -557,5 +557,10 @@ ${cookie.loginAct.value}
         2) 使用Java解析excel文件: iText, apache-poi
 ```
 
+## 124 设计导入市场活动并实现Mapper层和Service层
+
+![img.png](images/124_a_upload_activities_process_1.png)
+
+![img.png](images/124_b_upload_activities_process_2.png)
 
 

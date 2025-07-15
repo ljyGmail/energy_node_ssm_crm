@@ -31,4 +31,6 @@ public interface ActivityService {
     List<Activity> queryAllActivities();
 
     List<Activity> querySelectedActivities(String[] ids);
+
+    int saveUploadedActivitiesByList(List<Activity> activityList);
 }
