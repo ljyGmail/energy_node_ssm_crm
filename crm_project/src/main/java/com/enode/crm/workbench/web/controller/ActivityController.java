@@ -3,6 +3,7 @@ package com.enode.crm.workbench.web.controller;
 import com.enode.crm.commons.constants.Constants;
 import com.enode.crm.commons.domain.ReturnObject;
 import com.enode.crm.commons.utils.DateUtils;
+import com.enode.crm.commons.utils.HSSFUtils;
 import com.enode.crm.commons.utils.UUIDUtils;
 import com.enode.crm.settings.domain.User;
 import com.enode.crm.settings.service.UserService;
@@ -22,10 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * ClassName: ActivityController
@@ -375,6 +373,67 @@ public class ActivityController {
         ReturnObject returnObject = new ReturnObject();
         returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
         returnObject.setMessage("上传成功");
+        return returnObject;
+    }
+
+    @RequestMapping("/workbench/activity/importActivities.do")
+    @ResponseBody
+    public Object importActivities(MultipartFile activitiesFile, HttpSession session) {
+        User user = (User) session.getAttribute(Constants.SESSION_USER);
+        ReturnObject returnObject = new ReturnObject();
+        try {
+            // 把接收到的excel文件写到磁盘目录中
+            String originalFilename = activitiesFile.getOriginalFilename();
+            File file = new File("/Users/liangjinyong/Desktop/", originalFilename);
+            activitiesFile.transferTo(file);
+
+            // 解析excel文件，获取文件中的数据，并且封装成activityList
+            InputStream is = new FileInputStream(file);
+            HSSFWorkbook wb = new HSSFWorkbook(is);
+            HSSFSheet sheet = wb.getSheetAt(0);
+            HSSFRow row = null;
+            HSSFCell cell = null;
+            Activity activity = null;
+            List<Activity> activityList = new ArrayList<>();
+
+            for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                row = sheet.getRow(i);
+                activity = new Activity();
+                activity.setId(UUIDUtils.getUUID());
+                activity.setOwner(user.getId());
+                activity.setCreateTime(DateUtils.formateDateTime(new Date()));
+                activity.setCreateBy(user.getId());
+
+                for (int j = 0; j < row.getLastCellNum(); j++) {
+                    cell = row.getCell(j);
+
+                    String cellValue = HSSFUtils.getCellValueForStr(cell);
+                    if (j == 0) {
+                        activity.setName(cellValue);
+                    } else if (j == 1) {
+                        activity.setStartDate(cellValue);
+                    } else if (j == 2) {
+                        activity.setEndDate(cellValue);
+                    } else if (j == 3) {
+                        activity.setCost(cellValue);
+                    } else if (j == 4) {
+                        activity.setDescription(cellValue);
+                    }
+                }
+
+                // 将每一行中的数据完成封装之后，将activity保存到list中
+                activityList.add(activity);
+            }
+            // 调用Service层方法，保存市场活动
+            int ret = activityService.saveUploadedActivitiesByList(activityList);
+
+            returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
+            returnObject.setRetData(ret);
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
+            returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
+        }
         return returnObject;
     }
 }

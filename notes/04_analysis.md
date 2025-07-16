@@ -563,4 +563,10 @@ ${cookie.loginAct.value}
 
 ![img.png](images/124_b_upload_activities_process_2.png)
 
+## 125 实现导入市场活动的Controller层
+
+```text
+1. 文件上传: 上传的文件是跟用户约定好的。
+```
+
 
