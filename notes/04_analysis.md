@@ -580,3 +580,19 @@ ${cookie.loginAct.value}
 
 ## 127 优化导入市场活动
 
+## 128 实现查看市场活动明细 查询备注信息的后台和前台页面
+
+```text
+3. 查看市场活动明细:
+    tbl_activity             tbl_activity_remark
+    id     name               id       note_content         activity_id
+    1001   act1               111      remark1              1001
+    1002   act2               222      remark2              1001
+                              333      remark3              1002
+
+  // 查询act1下所有的备注
+  select *
+  from tbl_activity_remark
+  where activity_id = 1001
+```
+

@@ -140,19 +140,22 @@
         </table>
         -->
 
+        <!--
         <table tableName="tbl_activity" domainObjectName="Activity"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
+        -->
 
 
-        <!--
         <table tableName="tbl_activity_remark" domainObjectName="ActivityRemark"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
-               *selectByExampleQueryId="false">*
+               selectByExampleQueryId="false">
         </table>
+
+        <!--
         <table tableName="tbl_tran" domainObjectName="Tran"
            enableCountByExample="false" enableUpdateByExample="false"
            enableDeleteByExample="false" enableSelectByExample="false"

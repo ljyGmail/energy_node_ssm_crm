@@ -8,6 +8,8 @@ import com.enode.crm.commons.utils.UUIDUtils;
 import com.enode.crm.settings.domain.User;
 import com.enode.crm.settings.service.UserService;
 import com.enode.crm.workbench.domain.Activity;
+import com.enode.crm.workbench.domain.ActivityRemark;
+import com.enode.crm.workbench.service.ActivityRemarkService;
 import com.enode.crm.workbench.service.ActivityService;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -42,6 +44,9 @@ public class ActivityController {
 
     @Autowired
     private ActivityService activityService;
+
+    @Autowired
+    private ActivityRemarkService activityRemarkService;
 
     @RequestMapping("/workbench/activity/index.do")
     public String index(HttpServletRequest request) {
@@ -437,5 +442,20 @@ public class ActivityController {
             returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
         }
         return returnObject;
+    }
+
+    @RequestMapping("/workbench/activity/activityDetail.do")
+    public String activityDetail(String id, HttpServletRequest request) {
+        // 调用Service层方法，查询数据
+        Activity activity = activityService.queryActivityForDetailById(id);
+
+        List<ActivityRemark> activityRemarkList = activityRemarkService.queryActivityRemarksForDetailByActivityId(id);
+
+        // 把数据保存到request中
+        request.setAttribute("activity", activity);
+        request.setAttribute("activityRemarkList", activityRemarkList);
+
+        // 请求转发
+        return "workbench/activity/detail";
     }
 }
