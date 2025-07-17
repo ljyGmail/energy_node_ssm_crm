@@ -328,6 +328,51 @@
                 // 发送同步请求
                 window.location.href = 'workbench/activity/exportSelectedActivities.do?' + ids;
             });
+
+            $('#importActivityBtn').click(function () {
+                // 收集参数
+                const activitiesFileName = $('#activitiesFile').val();
+                const suffix = activitiesFileName.substr(activitiesFileName.lastIndexOf('.') + 1).toLowerCase();
+                if (suffix !== 'xls') {
+                    alert('.xls파일만 지원합니다.');
+                    return;
+                }
+
+                const activitiesFile = $('#activitiesFile').get(0).files[0];
+                if (activitiesFile.size > 5 * 1024 * 1024) {
+                    alert('파일 용량이 5MB 초과하면 안됩니다.')
+                    return;
+                }
+
+                // FormDate是ajax提供的接口，可以模拟键值对向后台提交参数。
+                // FormDate最大的优势是不但能提供文本数据，还能提交二进制数据。
+                const formData = new FormData();
+                formData.append('activitiesFile', activitiesFile);
+                $.ajax({
+                    url: 'workbench/activity/importActivities.do',
+                    data: formData,
+                    processData: false, // 设置ajax向后台提交参数之前，是否把参数统一转换成字符串，默认是true。
+                    contentType: false, // 设置ajax向后台提交参数之前，是否把所有的参数统一按urlencoded编码，默认是true。
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code == "1") {
+                            // 提示成功导入记录条数
+                            alert("成功导入" + data.retData + "条记录");
+                            // 关闭模态窗口
+                            $('#importActivityModal').modal('hide');
+                            // 刷新市场活动列表，显示第一页数据，保持每页显示条数不变
+                            const rowsPerPage = $('#page-master').bs_pagination('getOption', 'rowsPerPage');
+                            queryActivityByConditionForPaging(1, rowsPerPage);
+                        } else {
+                            // 提示信息
+                            alert(data.message);
+                            // 模态窗口不关闭
+                            $('#importActivityModal').modal('show');
+                        }
+                    }
+                });
+            });
         });
 
         function queryActivityByConditionForPaging(pageNo, pageSize) {
@@ -360,7 +405,7 @@
                     $.each(data.activityList, function (index, obj) {
                         htmlStr += '<tr class="active">';
                         htmlStr += '<td><input type="checkbox" value="' + obj.id + '"/></td>';
-                        htmlStr += '<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'detail.html\';">' + obj.name + '</a></td>';
+                        htmlStr += '<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/activity/detailActivity.do?id=' + obj.id + '\'">' + obj.name + '</a></td>';
                         htmlStr += '<td>' + obj.owner + '</td>';
                         htmlStr += '<td>' + obj.startDate + '</td>';
                         htmlStr += '<td>' + obj.endDate + '</td>';
@@ -546,7 +591,7 @@
                     업로드할 파일을 선택하세요:<small style="color: gray;">[.xls파일만 가능]</small>
                 </div>
                 <div style="position: relative;top: 40px; left: 50px;">
-                    <input type="file" id="activityFile">
+                    <input type="file" id="activitiesFile">
                     <br>
                     <a href="file/activity.xls" download="activity-mode.xls"
                        style="text-decoration:none;color: #2a6496"><b>엑셀 템플릿 다운로드</b></a>

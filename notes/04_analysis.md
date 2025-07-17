@@ -569,4 +569,13 @@ ${cookie.loginAct.value}
 1. 文件上传: 上传的文件是跟用户约定好的。
 ```
 
+## 126 实现导入市场活动的前台页面
+
+```text
+2. js截取字符串:
+    str.substr(startIndex, length)
+    str.substr(startIndex) // 从下标为startIndex的字符串开始截取，截取到字符串最后
+    str.substring(startIndex, endIndex)
+```
+
 
