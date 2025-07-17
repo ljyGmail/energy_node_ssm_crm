@@ -383,12 +383,14 @@ public class ActivityController {
         ReturnObject returnObject = new ReturnObject();
         try {
             // 把接收到的excel文件写到磁盘目录中
-            String originalFilename = activitiesFile.getOriginalFilename();
-            File file = new File("/Users/liangjinyong/Desktop/", originalFilename);
-            activitiesFile.transferTo(file);
+            // String originalFilename = activitiesFile.getOriginalFilename();
+            // File file = new File("/Users/liangjinyong/Desktop/", originalFilename);
+            // activitiesFile.transferTo(file);
 
             // 解析excel文件，获取文件中的数据，并且封装成activityList
-            InputStream is = new FileInputStream(file);
+            // InputStream is = new FileInputStream(file);
+
+            InputStream is = activitiesFile.getInputStream();
             HSSFWorkbook wb = new HSSFWorkbook(is);
             HSSFSheet sheet = wb.getSheetAt(0);
             HSSFRow row = null;
