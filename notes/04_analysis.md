@@ -633,3 +633,51 @@ ${cookie.loginAct.value}
               当页面都加载完成，再执行入口函数。
 ```
 
+## 131 添加市场活动备注实现前台页面，删除市场活动备注的流程分析
+
+```text
+2. 把页面片段动态地显示在页面中:
+    选择器.html(htmlStr): 覆盖显示在标签内部
+    选择器.text(htmlStr): 覆盖显示在标签内部
+    
+    选择器.append(htmlStr): 追加显示在指定标签的内部的后边
+    <div id="myDiv">
+        aaaaaaa
+        bbbbbbb
+    </div>
+    var htmlStr = '<p>cccccc</p>'
+    $('#myDiv').append(htmlStr);
+    <div id="myDiv">
+        aaaaaaa
+        bbbbbbb
+        <p>cccccc</p>
+    </div>
+    
+    选择器.after(htmlStr): 追加显示在指定标签的外部的后边
+    <div id="myDiv">
+        aaaaaaa
+        bbbbbbb
+    </div>
+    var htmlStr = '<p>cccccc</p>'
+    $('#myDiv').after(htmlStr);
+    <div id="myDiv">
+        aaaaaaa
+        bbbbbbb
+    </div>
+    <p>cccccc</p>
+    
+    选择器.before(htmlStr): 追加显示在指定标签的外部的前边
+    <div id="myDiv">
+        aaaaaaa
+        bbbbbbb
+    </div>
+    var htmlStr = '<p>cccccc</p>'
+    $('#myDiv').bnefore(htmlStr);
+    <p>cccccc</p>
+    <div id="myDiv">
+        aaaaaaa
+        bbbbbbb
+    </div>
+```
+
+![img.png](images/131_delete_activity_remark_process.png)
