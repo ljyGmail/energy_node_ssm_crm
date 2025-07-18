@@ -619,4 +619,17 @@ ${cookie.loginAct.value}
 ![img.png](images/129_b_add_remark_process_1.png)
 ![img_1.png](images/129_c_add_remark_process_2.png)
 
+## 130 添加市场活动备注实现Controller层
+
+```text
+1. 添加市场活动备注:
+    jsp的运行原理:
+    xxx.jsp: 1) tomcat中运行
+             把xxx.jsp翻译成一个Servlet
+             运行Servlet，运行的结果是一个HTML网页
+             把HTML网页输出到浏览器
+             2) HTML网页在浏览器上运行
+              先从上到下加载HTML网页到浏览器，在加载过程中，运行前端代码
+              当页面都加载完成，再执行入口函数。
+```
 

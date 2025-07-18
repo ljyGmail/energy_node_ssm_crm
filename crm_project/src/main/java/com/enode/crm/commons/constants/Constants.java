@@ -16,4 +16,8 @@ public class Constants {
 
     // 保存当前用户的key
     public static final String SESSION_USER = "sessionUser";
+
+    // 备注的修改标记
+    public static final String REMARK_EDIT_FLAG_UNMODIFIED = "0"; // 没有修改过
+    public static final String REMARK_EDIT_FLAG_MODIFIED = "1"; // 已经被修改过
 }

@@ -82,7 +82,7 @@
                 }
                 // 发送请求
                 $.ajax({
-                    url: 'workbench/activity/saveCreateActivityRemark.do',
+                    url: 'workbench/activity/saveCreatedActivityRemark.do',
                     data: {
                         noteContent: noteContent,
                         activityId: activityId
@@ -95,15 +95,15 @@
                             $("#remark").val("");
                             // 刷新备注列表
                             var htmlStr = "";
-                            htmlStr += "<div id=\"div_" + data.returnData.id + "\" class=\"remarkDiv\" style=\"height: 60px;\">";
+                            htmlStr += "<div id=\"div_" + data.retData.id + "\" class=\"remarkDiv\" style=\"height: 60px;\">";
                             htmlStr += "<img title=\"${sessionScope.sessionUser.name}\" src=\"image/user-thumbnail.png\" style=\"width: 30px; height:30px;\">";
                             htmlStr += "<div style=\"position: relative; top: -40px; left: 40px;\" >";
-                            htmlStr += "<h5>" + data.returnData.noteContent + "</h5>";
-                            htmlStr += "<font color=\"gray\">마케팅 활동</font> <font color=\"gray\">-</font> <b>${activity.name}</b> <small style=\"color: gray;\"> " + data.returnData.createTime + "에 ${sessionScope.sessionUser.name}님이 등록했습니다.</small>";
+                            htmlStr += "<h5>" + data.retData.noteContent + "</h5>";
+                            htmlStr += "<font color=\"gray\">마케팅 활동</font> <font color=\"gray\">-</font> <b>${activity.name}</b> <small style=\"color: gray;\"> " + data.retData.createTime + "에 ${sessionScope.sessionUser.name}님이 등록했습니다.</small>";
                             htmlStr += "<div style=\"position: relative; left: 500px; top: -30px; height: 30px; width: 100px; display: none;\">";
-                            htmlStr += "<a class=\"myHref\" name=\"editA\" remarkId=\"" + data.returnData.id + "\" href=\"javascript:void(0);\"><span class=\"glyphicon glyphicon-edit\" style=\"font-size: 20px; color: #E6E6E6;\"></span></a>";
+                            htmlStr += "<a class=\"myHref\" name=\"editA\" remarkId=\"" + data.retData.id + "\" href=\"javascript:void(0);\"><span class=\"glyphicon glyphicon-edit\" style=\"font-size: 20px; color: #E6E6E6;\"></span></a>";
                             htmlStr += "&nbsp;&nbsp;&nbsp;&nbsp;";
-                            htmlStr += "<a class=\"myHref\" name=\"deleteA\" remarkId=\"" + data.returnData.id + "\" href=\"javascript:void(0);\"><span class=\"glyphicon glyphicon-remove\" style=\"font-size: 20px; color: #E6E6E6;\"></span></a>";
+                            htmlStr += "<a class=\"myHref\" name=\"deleteA\" remarkId=\"" + data.retData.id + "\" href=\"javascript:void(0);\"><span class=\"glyphicon glyphicon-remove\" style=\"font-size: 20px; color: #E6E6E6;\"></span></a>";
                             htmlStr += "</div>";
                             htmlStr += "</div>";
                             htmlStr += "</div>";
