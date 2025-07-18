@@ -596,3 +596,27 @@ ${cookie.loginAct.value}
   where activity_id = 1001
 ```
 
+## 129 添加市场活动备注的需求，流程分析，并实现Mapper层和Service层
+
+```text
+1. 使用标签保存数据，以便在需要的时候能够获取到这些数据:
+
+给标签添加属性:
+    如果是表单组件标签，优先使用value属性，只有value属性不方便使用时，使用自定义属性;
+    如果不是表单组件标签，不推荐使用value属性，推荐使用自定义属性。
+    
+获取属性值时:
+    如果获取表单组件标签的value属性的值: dom对象.value
+                                  jquery对象.val()
+    如果是自定义的属性，不管是什么标签，只能用: jquery对象.attr("属性名")
+    
+------------------------------------------------------------
+
+```
+
+![img.png](images/129_a_add_remark_requirements.png)
+
+![img.png](images/129_b_add_remark_process_1.png)
+![img_1.png](images/129_c_add_remark_process_2.png)
+
+

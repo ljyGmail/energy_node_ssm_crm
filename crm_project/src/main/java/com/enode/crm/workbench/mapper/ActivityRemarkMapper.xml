@@ -174,4 +174,11 @@
                  left join tbl_user u2 on ar.edit_by = u2.id
         where ar.activity_id = #{activityId}
     </select>
+
+    <!-- int insertActivityRemark(ActivityRemark remark); -->
+    <insert id="insertActivityRemark" parameterType="com.enode.crm.workbench.domain.ActivityRemark">
+        insert into tbl_activity_remark
+        (id, note_content, create_time, create_by, edit_time, edit_by, edit_flag, activity_id)
+        values (#{id}, #{noteContent}, #{createTime}, #{createBy}, #{editTime}, #{editBy}, #{editFlag}, #{activityId})
+    </insert>
 </mapper>
