@@ -71,4 +71,34 @@ public class ActivityRemarkController {
         }
         return returnObject;
     }
+
+    @RequestMapping("/workbench/activity/saveEditedActivityRemark.do")
+    @ResponseBody
+    public Object saveEditedActivityRemark(ActivityRemark activityRemark, HttpSession session) {
+
+        User user = (User) session.getAttribute(Constants.SESSION_USER);
+        // 封装参数
+        activityRemark.setEditTime(DateUtils.formateDateTime(new Date()));
+        activityRemark.setEditBy(user.getId());
+        activityRemark.setEditFlag(Constants.REMARK_EDIT_FLAG_MODIFIED);
+
+        ReturnObject returnObject = new ReturnObject();
+        try {
+            // 调用Service层方法，保存修改的市场活动备注
+            int ret = activityRemarkService.saveEditedActivityRemark(activityRemark);
+
+            if (ret > 0) {
+                returnObject.setCode(Constants.RETURN_OBJECT_CODE_SUCCESS);
+                returnObject.setRetData(activityRemark);
+            } else {
+                returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
+                returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            returnObject.setCode(Constants.RETURN_OBJECT_CODE_FAILURE);
+            returnObject.setMessage("시스템이 혼잡하니 잠시 후 다시 시도해 주세요.");
+        }
+        return returnObject;
+    }
 }

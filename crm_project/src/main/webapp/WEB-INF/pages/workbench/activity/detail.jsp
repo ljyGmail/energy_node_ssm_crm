@@ -165,7 +165,7 @@
                 }
                 // 发送请求
                 $.ajax({
-                    url: 'workbench/activity/saveEditActivityRemark.do',
+                    url: 'workbench/activity/saveEditedActivityRemark.do',
                     data: {
                         id: id,
                         noteContent: noteContent
@@ -177,8 +177,8 @@
                             // 关闭模态窗口
                             $("#editRemarkModal").modal("hide");
                             // 刷新备注列表（在前端写数据）
-                            $("#div_" + data.returnData.id + " h5").text(data.returnData.noteContent); // 备注前端显示修改后的数据
-                            $("#div_" + data.returnData.id + " small").text(" " + data.returnData.editTime + "에 ${sessionScope.sessionUser.name}님이 수정했습니다.");
+                            $("#div_" + data.retData.id + " h5").text(data.retData.noteContent); // 备注前端显示修改后的数据
+                            $("#div_" + data.retData.id + " small").text(" " + data.retData.editTime + "에 ${sessionScope.sessionUser.name}님이 수정했습니다.");
                         } else {
                             // 提示信息
                             alert(data.message);
@@ -188,7 +188,6 @@
                     }
                 });
             });
-
         });
     </script>
 
