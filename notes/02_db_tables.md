@@ -462,6 +462,66 @@ create table tbl_tran_remark
     tran_id      char(32),
     primary key (id)
 );
-```
 
+
+# 数据字典数据
+INSERT INTO `tbl_dic_type`
+VALUES ('appellation', '호칭', ''),
+       ('clueState', '리드 상태', ''),
+       ('returnPriority', '재방문 우선순위', ''),
+       ('returnState', '재방문 상태', ''),
+       ('source', '출처', ''),
+       ('stage', '단계', ''),
+       ('transactionType', '거래 유형', '');
+
+
+INSERT INTO `tbl_dic_value`
+VALUES ('06e3cbdf10a44eca8511dddfc6896c55', '허위리드', '허위리드', 4, 'clueState'),
+       ('0fe33840c6d84bf78df55d49b169a894', '영업 이메일', '영업 이메일', 8, 'source'),
+       ('12302fd42bd349c1bb768b19600e6b20', '거래 박람회', '거래 박람회', 11, 'source'),
+       ('1615f0bb3e604552a86cde9a2ad45bea', '최고', '최고', 2, 'returnPriority'),
+       ('176039d2a90e4b1a81c5ab8707268636', '교수', '교수', 5, 'appellation'),
+       ('1e0bd307e6ee425599327447f8387285', '추후 연락', '추후 연락', 2, 'clueState'),
+       ('2173663b40b949ce928db92607b5fe57', '리드 손실', '리드 손실', 5, 'clueState'),
+       ('2876690b7e744333b7f1867102f91153', '시작 안 됨', '시작 안 됨', 1, 'returnState'),
+       ('29805c804dd94974b568cfc9017b2e4c', '성사', '성사', 7, 'stage'),
+       ('310e6a49bd8a4962b3f95a1d92eb76f4', '연락 시도', '연락 시도', 1, 'clueState'),
+       ('31539e7ed8c848fc913e1c2c93d76fd1', '박사', '박사', 4, 'appellation'),
+       ('37ef211719134b009e10b7108194cf46', '자격 심사', '자격 심사', 1, 'stage'),
+       ('391807b5324d4f16bd58c882750ee632', '유실된 리드', '유실된 리드', 8, 'stage'),
+       ('3a39605d67da48f2a3ef52e19d243953', '채팅', '채팅', 14, 'source'),
+       ('474ab93e2e114816abf3ffc596b19131', '낮음', '낮음', 3, 'returnPriority'),
+       ('48512bfed26145d4a38d3616e2d2cf79', '광고', '광고', 1, 'source'),
+       ('4d03a42898684135809d380597ed3268', '파트너 세미나', '파트너 세미나', 9, 'source'),
+       ('59795c49896947e1ab61b7312bd0597c', '씨', '씨', 1, 'appellation'),
+       ('5c6e9e10ca414bd499c07b886f86202a', '높음', '높음', 1, 'returnPriority'),
+       ('67165c27076e4c8599f42de57850e39c', '부인', '부인', 2, 'appellation'),
+       ('68a1b1e814d5497a999b8f1298ace62b', '갱쟁으로 인한 손실 마감', '갱쟁으로 인한 손실 마감', 9, 'stage'),
+       ('6b86f215e69f4dbd8a2daa22efccf0cf', '웹 조사', '웹 조사', 13, 'source'),
+       ('72f13af8f5d34134b5b3f42c5d477510', '파트너', '파트너', 6, 'source'),
+       ('7c07db3146794c60bf975749952176df', '연락 안 됨', '연락 안 됨', 6, 'clueState'),
+       ('86c56aca9eef49058145ec20d5466c17', '내부 세미나', '내부 세미나', 10, 'source'),
+       ('9095bda1f9c34f098d5b92fb870eba17', '진행 중', '진행 중', 3, 'returnState'),
+       ('954b410341e7433faa468d3c4f7cf0d2', '기존 거래', '기존 거래', 1, 'transactionType'),
+       ('966170ead6fa481284b7d21f90364984', '연락 완료', '연락 완료', 3, 'clueState'),
+       ('96b03f65dec748caa3f0b6284b19ef2f', '연기', '연기', 2, 'returnState'),
+       ('97d1128f70294f0aac49e996ced28c8a', '신규 거래', '신규 거래', 2, 'transactionType'),
+       ('9ca96290352c40688de6596596565c12', '완료', '완료', 4, 'returnState'),
+       ('9e6d6e15232549af853e22e703f3e015', '조건 필요', '조건 필요', 7, 'clueState'),
+       ('9ff57750fac04f15b10ce1bbb5bb8bab', '요구 분석', '요구 분석', 2, 'stage'),
+       ('a70dc4b4523040c696f4421462be8b2f', '대기 중', '대기 중', 5, 'returnState'),
+       ('a83e75ced129421dbf11fab1f05cf8b4', '영업 전화', '영업 전화', 2, 'source'),
+       ('ab8472aab5de4ae9b388b2f1409441c1', '일반', '일반', 5, 'returnPriority'),
+       ('ab8c2a3dc05f4e3dbc7a0405f721b040', '제안/견적', '제안/견적', 5, 'stage'),
+       ('b924d911426f4bc5ae3876038bc7e0ad', '웹 다운로드', '웹 다운로드', 12, 'source'),
+       ('c13ad8f9e2f74d5aa84697bb243be3bb', '가치 제안', '가치 제안', 3, 'stage'),
+       ('c83c0be184bc40708fd7b361b6f36345', '최저', '최저', 4, 'returnPriority'),
+       ('db867ea866bc44678ac20c8a4a8bfefb', '직원 추천', '직원 추천', 3, 'source'),
+       ('e44be1d99158476e8e44778ed36f4355', '의사결정자 확정', '의사결정자 확정', 4, 'stage'),
+       ('e5f383d2622b4fc0959f4fe131dafc80', '여사', '여사', 3, 'appellation'),
+       ('e81577d9458f4e4192a44650a3a3692b', '협상/재검토', '협상/재검토', 6, 'stage'),
+       ('fb65d7fdb9c6483db02713e6bc05dd19', '온라인 쇼핑몰', '온라인 쇼핑몰', 5, 'source'),
+       ('fd677cc3b5d047d994e16f6ece4d3d45', '공개 매체', '공개 매체', 7, 'source'),
+       ('ff802a03ccea4ded8731427055681d48', '외부 추천', '외부 추천', 4, 'source');
+```
 

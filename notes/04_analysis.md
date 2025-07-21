@@ -708,6 +708,15 @@ ${cookie.loginAct.value}
         创建线索，查看线索明细，线索关联市场活动，解除线索和市场活动的关联关系，线索转换。
         
 2. 创建线索:
+
+    tbl_dic_type    code       存储下拉列表的类型，每一个下拉列表在tbl_dic_type对应一条记录，主键值都是各自的编码，有含义的字段做主键，在程序如果需要用到这些主键值，可以直接使用。
+    tbl_dic_value   type_code  存储每一个下拉列表中的选项值，通过type_code区分选项值属于哪一个下拉列表。
+    
+    queryDicValueByTypeCode("type")
 ```
+
 ![img.png](images/134_create_clue_requirements.png)
+
+## 135 分析数据字典表的设计和使用，实现数据字典的Mapper层和Service
+
 
