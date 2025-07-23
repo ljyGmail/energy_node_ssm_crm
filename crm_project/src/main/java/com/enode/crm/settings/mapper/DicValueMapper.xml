@@ -133,10 +133,10 @@
 
   <!-- List<DicValue> selectDicValueByTypeCode(@Param("typeCode") String typeCode); -->
   <select id="selectDicValueByTypeCode" parameterType="string" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from tbl_dict_value
-    where type_code = #{typeCode}
-    order by order_no
+      select
+      <include refid="Base_Column_List"/>
+      from tbl_dic_value
+      where type_code = #{typeCode}
+      order by order_no
   </select>
 </mapper>
